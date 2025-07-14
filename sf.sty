@@ -1,0 +1,91 @@
+% センシングフォーラム用
+% 使い方
+%\documentclass[a4paper]{jarticle}
+%\usepackage{sf}
+\textwidth=180mm
+\columnsep=10mm
+\oddsidemargin=-9mm
+\evensidemargin=\oddsidemargin
+\textheight=250mm
+\topmargin=-2mm
+\headsep=0pt
+\headheight=0pt
+\long\def\affiliation#1{\gdef\@affiliation{#1}}
+\long\def\Etitle#1{\gdef\@Etitle{#1}}
+\long\def\Eauthor#1{\gdef\@Eauthor{#1}}
+\long\def\Eaffiliation#1{\gdef\@Eaffiliation{#1}}
+\long\def\Abstract#1{\gdef\@Abstract{#1}}
+\def\maketitle{\par
+ \begingroup
+    \renewcommand\thefootnote{\arabic{footnote}}%
+    \def\@makefnmark{\rlap{\@textsuperscript{\normalfont\@thefnmark}}}%
+     \long\def\@makefntext##1{\parindent 1em\noindent
+             \hb@xt@1.8em{%
+                 \hss\@textsuperscript{\normalfont\@thefnmark}}##1}%
+   \twocolumn[\@maketitle]%
+ \endgroup
+ \setcounter{footnote}{0}%
+ \let\maketitle\relax
+ \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax}
+\def\@maketitle{%
+  \vbox{\hsize\textwidth \linewidth\hsize
+    \centering
+    {\Large \@title \par}\vskip 2ex
+    %{\Large\bfseries \@title \par}\vskip 2ex
+    {\large \@author \par}\vskip 1ex
+    {\large \@affiliation \par}\vskip 1ex
+    {\large \@Etitle \par}\vskip 1ex
+    {\large \@Eauthor \par}\vskip 1ex
+    {\large \@Eaffiliation \par}\vskip 5ex
+    \parbox{150mm}{{\bfseries 要旨.}\@Abstract}\vskip 4ex
+}}
+\pagestyle{empty}
+\def\@seccntformat#1{\csname the#1\endcsname ~~}
+\def\@sect#1#2#3#4#5#6[#7]#8{%
+  \ifnum #2>\c@secnumdepth
+    \let\@svsec\@empty
+  \else
+    \refstepcounter{#1}%
+    \protected@edef\@svsec{\@seccntformat{#1}\relax}%
+    \sbox\@tempboxa{\hskip2\hsize}% preparation
+    \ifnum #2=1% special treatment for ‘section’
+      \protected@edef\@svsec{\thesection .\hskip.5em}% period added
+      \sbox\@tempboxa{\normalfont\Large\bfseries
+        \hskip #3\relax\@svsec #8}%
+    \fi
+  \fi
+  \@tempskipa #5\relax
+  \ifdim \@tempskipa>\z@
+    \begingroup
+      #6{%
+        \ifdim \wd\@tempboxa>\hsize % normal case
+        \@hangfrom{\hskip #3\relax\@svsec}%
+          \interlinepenalty \@M #8\@@par
+        \else % special case (centering)
+          \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+        \fi}
+    \endgroup
+    \csname #1mark\endcsname{#7}%
+    \addcontentsline{toc}{#1}{%
+      \ifnum #2>\c@secnumdepth \else
+        \protect\numberline{\csname the#1\endcsname}%
+      \fi
+      #7}%
+  \else
+    \def\@svsechd{%
+      #6{\hskip #3\relax
+      \@svsec #8}%
+      \csname #1mark\endcsname{#7}%
+      \addcontentsline{toc}{#1}{%
+        \ifnum #2>\c@secnumdepth \else
+          \protect\numberline{\csname the#1\endcsname}%
+        \fi
+        #7}}%
+  \fi
+  \@xsect{#5}}
+\let\subsubsection=\paragraph
+%\def\@cite#1#2{$^{\mbox{\scriptsize #1)}}$}
+\def\@cite#1#2{${\mbox{[#1]}}$}
+\def\refname{\centering 参考文献}
+\endinput
