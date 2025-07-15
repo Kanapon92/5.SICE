@@ -1,6 +1,11 @@
 \documentclass[a4paper]{jarticle}
 \usepackage{sf}
 
+%図に関する設定
+\usepackage[dvipdfmx]{graphicx}
+\graphicspath{{0.Fig/}}
+%数式に関する設定
+\usepackage{amsmath}
 
 \title{センシングフォーラム予稿テンプレート}
 \author{○金谷　孝一郎$^1$, 山川　雄司$^2$}
@@ -44,5 +49,81 @@ $^2$ University of Tokyo }
 計測 太郎：センシングフォーラム予稿の書き方，
 第39回センシングフォーラム論文集，pp. 1-5, 2022.
 \end{thebibliography}
+\section{図の挿入例}
+以下にPDF形式の図を挿入します。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example.pdf}
+    \caption{サンプル図}
+    \label{fig:sample}
+\end{figure}
+
+図~\ref{fig:sample}はサンプル図です。
+\section{課題設定}
+グリッパに力センサを搭載しない場合，グリッパが目標位置に到達した際に，力入力は，0 [N]になるが，柔軟物からの反力は存在し，塑性変形が進行するにしたがって，柔軟物からの反力は減少する．
+本研究では，柔軟物の変形と反力の関係をバネとダンパを用いてモデル化し，グリッパの目標位置に到達した際の柔軟物の変形量を推定することを目的とする．
+\section{提案手法}
+一般に，弾性と粘性の挙動を表現するには，バネとダンパの要素が４つ必要である\cite{?}．4つの要素を用いた場合の組み合わせは，7種類存在し，リアルタイムで同定している研究/cite{??}と
+比較するために，図~\ref{?}を用いる．図~\ref{?}のモデルの接触力$f$と，変形量$x$の関係は以下のように表される．
+\begin{equation}
+    % \frac{k_1 k_2}{c_2}\int{x}\,dt + k_1 x = \frac{k_1k_2}{c_1 c_2}\iint{f}\,dt\,dt + \frac{k_1}{c_2}(1+\frac{k_2}{k_1}+\frac{c_2}{c_1})\int{f}\,dt + f
+p_1 {x}\,dt + p_2 \int{x} = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
+\label{eq:BSmodel}
+\end{equation}
+% \begin{equation}
+%     \begin{aligned}
+%         \frac{k_1 k_2}{c_2} \int{x}\,dt + k_1 x &= 
+%         \frac{k_1 k_2}{c_1 c_2} \iint{f}\,dt\,dt \\
+%         &\quad + \frac{k_1}{c_2} \left( 1 + \frac{k_2}{k_1} + \frac{c_2}{c_1} \right) \int{f}\,dt + f
+%     \end{aligned}
+%     \label{eq:BSmodel}
+% \end{equation}
+% ここで，
+% \begin{equation}
+%     \begin{aligned}
+%         a_1 &= \frac{c_1 c_2 (k_1 + k_2)}{k_1 k_2}      \\
+%         a_2 &= c_1  \\
+%         b_1 &= \frac{c_1 c_2}{k_1 k_2} \\
+%         b_2 &= \frac{c_1 k_2 + c_2 k_1 + c_2 k_2}{k_1 + k_2} \\
+%     \end{aligned}
+% \end{equation}
+ここで，
+\begin{equation}
+    \begin{aligned}
+        p_1 &= k_1  \\
+        p_2 &= \frac{k_1 k_2}{c_2}      \\
+        p_3 &= \frac{k_1}{c_2}(1+\frac{k_2}{k_1}+\frac{c_2}{c_1}) \\
+        p_4 &= \frac{k_1k_2}{c_1 c_2} \\
+    \end{aligned}
+\end{equation}
+である．$k_1$,$k_2$は弾性係数であり，$c_1$,$c_2$は粘性減衰係数である．
+接触力$f$をモータの力入力を用い，変形量$x$は，グリッパの目標軌道を用いて，$p_1$,$p_2$,$p_3$,$p_4$を同定し，$k_1$,$k_2$,$c_1$,$c_2$を求める．
+そこで，式~\eqref{eq:BSmodel}を行列形式で表すと以下のようになる．
+\begin{equation}
+    \mathbf{M}\mathbf{p} = \mathbf{q} 
+\end{equation}
+ただし,
+\begin{equation}
+    \begin{aligned}
+        \mathbf{M} &= \begin{bmatrix}
+            \int{x} & \iint{x} & -\int{f}\ & -\iint{f}\\
+        \end{bmatrix}, \\
+        \mathbf{p}  &= \begin{bmatrix}
+            p_1 \\
+            p_2 \\
+            p_3 \\
+            p_4
+        \end{bmatrix}, \quad\quad\quad\quad
+        \mathbf{q}   = f
+    \end{aligned}
+\end{equation}
+である．
+\subsection{特異値分解を用いたグリッパの軌道生成}
+粘弾性係数$k_1$,$k_2$,$c_1$,$c_2$を同定させることは，行列$\mathbf{M}$の擬似逆行列を算出する問題に帰着する．
+\subsection{軌道生成に適応した粘弾性係数の算出方法}
+\subsection{粘弾性係数の妥当性を向上させるためのデータの抽出}
+
 \end{document}
+
 % end of sftemplate.tex
