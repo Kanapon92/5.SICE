@@ -119,10 +119,15 @@ p_1 {x}\,dt + p_2 \int{x} = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
     \end{aligned}
 \end{equation}
 である．
-\subsection{特異値分解を用いたグリッパの軌道生成}
 粘弾性係数$k_1$,$k_2$,$c_1$,$c_2$を同定させることは，行列$\mathbf{M}$の擬似逆行列を算出する問題に帰着する．
-\subsection{軌道生成に適応した粘弾性係数の算出方法}
-\subsection{粘弾性係数の妥当性を向上させるためのデータの抽出}
+しかし，エンコーダのノイズや，そのノイズが制御係数倍され，モータの力入力に現れる．これらのノイズにより粘弾性係数の同定精度が低下する課題がある．
+
+
+この課題を解決するために，まず，\ref{subsec:QR_traj_and_calculation}節では，行列$\mathbf{M}$の特異値に着目し，
+ノイズにロバストなグリッパの軌道生成方法と，その軌道に適した計算方法について述べる．
+次に，\ref{subsec:downsample}節では，粘弾性係数が0や無限大に近づくことを防ぐために，グリッパの軌道からデータを抽出する方法について述べる．
+\subsection{特異値分解を用いたグリッパの軌道生成と軌道に適した同定計算}\label{subsec:QR_traj_and_calculation}
+\subsection{粘弾性係数の妥当性を向上させるためのデータの抽出}\label{subsec:downsample}
 
 \end{document}
 
