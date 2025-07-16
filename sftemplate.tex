@@ -93,11 +93,12 @@ p_1 {x} + p_2 \int{x}\,dt = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
 ここで，
 \begin{equation}
     \begin{aligned}
-        p_1 &= k_1  \\
-        p_2 &= \frac{k_1 k_2}{c_2}      \\
-        p_3 &= \frac{k_1}{c_2}(1+\frac{k_2}{k_1}+\frac{c_2}{c_1}) \\
+        p_1 &= k_1,  \\
+        p_2 &= \frac{k_1 k_2}{c_2},    \\
+        p_3 &= \frac{k_1}{c_2}\left(1+\frac{k_2}{k_1}+\frac{c_2}{c_1}\right),\\
         p_4 &= \frac{k_1k_2}{c_1 c_2} \\
     \end{aligned}
+    \label{eq:p2ck}
 \end{equation}
 である．$k_1$,$k_2$は弾性係数であり，$c_1$,$c_2$は粘性減衰係数である．
 接触力$f$は，モータの力入力を用い，変形量$x$は，グリッパの目標軌道を用いて，$p_1$,$p_2$,$p_3$,$p_4$を同定し，$k_1$,$k_2$,$c_1$,$c_2$を求める．
@@ -110,7 +111,7 @@ p_1 {x} + p_2 \int{x}\,dt = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
 \begin{equation}
     \begin{aligned}
         \mathbf{M} &= \begin{bmatrix}
-            \boldsymbol{x} & \int{\boldsymbol{x}} & -\int{\boldsymbol{f}}\ & -\iint{\boldsymbol{f}}\\
+            \boldsymbol{x}, & \int{\boldsymbol{x}}, & -\int{\boldsymbol{f}}, & -\iint{\boldsymbol{f}}\\
         \end{bmatrix}, \\
         \mathbf{p}  &= \begin{bmatrix}
             p_1 \\
@@ -155,19 +156,24 @@ QR分解を用いた$\mathbf{M}$の生成方法を図~\ref{QR分解}に示す．
 1サイクル前に同定したパラメータ$\mathbf{p}$を柔軟物モデルに適応し，仮想的な5次関数形状の変形$x$を与えることで一時的な行列$\mathbf{M}_{\mathrm{temp}}$を生成し，QR分解することでQを得る．
 最終的に，独立して得られて$\mathbf{Q}$と$\mathbf{R}$を掛け合わせることで，行列$\mathbf{M}$を生成し，その1列目をグリッパの軌道とする．
 
-このグリッパの軌道生成に適したパラメータ$\mathbf{p}$の計算方法について述べる．粘弾性モデルの変形と反力の関係式(\ref{eq:BSmodel})を行列形式である式(\ref{eq:BSmodel_matrix})に変形する際，
+このグリッパの軌道生成に適したパラメータ$\mathbf{p}$の計算方法について述べる．粘弾性モデルの変形と反力の関係式~(\ref{eq:BSmodel})を行列形式である式~(\ref{eq:BSmodel_matrix})に変形する際，
 $\mathbf{q}$は$\boldsymbol{x} , \int{\boldsymbol{x}} , \int{\boldsymbol{f}} , \iint{\boldsymbol{f}}$の5通りの選び方がある．上記で述べたグリッパの軌道は，$\mathbf{q}$のノイズの影響を抑える軌道になっており，
 $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いることで
 提案した軌道生成が有効に働く．
 \subsection{粘弾性係数の妥当性を向上させるためのデータの抽出}\label{subsec:downsample}
-式(\ref{eq:Mp_q})は不能であり，求める解$\mathbf{p}$が4要素であるのに対し，方程式の数が過剰であり矛盾する式が含まれる．一部の矛盾する式より粘弾性係数が負になり，物理的に妥当性を失う．
-そこで，式(\ref{eq:Mp_q})の擬似逆行列の算出方法を逐次的に行い，粘弾性係数が物理的に妥当でないデータは除外する．
+式~(\ref{eq:Mp_q})は不能であり，求める解$\mathbf{p}$が4要素であるのに対し，方程式の数が過剰であり矛盾する式が含まれる．一部の矛盾する式より粘弾性係数が負になり，物理的に妥当性を失う．
+そこで，式~(\ref{eq:Mp_q})の擬似逆行列の算出方法を逐次的に行い，粘弾性係数が物理的に妥当でないデータは除外する．
 まず，擬似逆行列の逐次的な算出方法について述べる．タイムステップが$n-1$までの行列$\mathbf{M}$を$\mathbf{M}_{n-1}$とし，$n$番目のタイムステップのデータ$\mathbf{m}_n$として，タイムステップ$n$での行列$\mathbf{M}_n$を，
 \begin{equation}
-    \mathbf{M}_n = \begin{bmatrix}
-        \mathbf{M}_{n-1} \\
-        \mathbf{m}_n
-    \end{bmatrix}
+    \begin{aligned}
+        \mathbf{M}_n &= \begin{bmatrix}
+            \mathbf{M}_{n-1} \\
+            \mathbf{m}_n
+        \end{bmatrix},\\
+        \mathbf{m_{n}}&=\begin{bmatrix}
+            x_{n} & \int{x_{n}} & -\int{f_{n}}\ & -\iint{f_{n}}\\
+        \end{bmatrix}
+    \end{aligned}
 \end{equation}
 とする．このとき$(\mathbf{M_{n}}^{T}\mathbf{M_{n}})^{-1}$を$\mathbf{J}_{n}$とし，$\mathbf{J}_{n}$の更新式はWoodburyの公式を用いて,
 \begin{equation}
@@ -176,6 +182,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
                  &= (\mathbf{M_{n-1}}^{T}\mathbf{M_{n-1}} + \mathbf{m_{n}}^{T}\mathbf{m_{n}})^{-1}\\
                  &= \mathbf{J}_{n-1} - \frac{\mathbf{J}_{n-1}\mathbf{m_{n}}\mathbf{m_{n}}^{T}\mathbf{J}_{n-1}}{1+\mathbf{m_{n}}^{T}\mathbf{J}_{n-1}\mathbf{m_{n}}}
     \end{aligned}
+    \label{eq:step_J}
 \end{equation}
 と表せる．$\mathbf{p}$の$n-1$番目と$n$番目の関係は，
 \begin{equation}
@@ -184,9 +191,27 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
                  &= \mathbf{J}_{n}\mathbf{M_{n}}^{T}\mathbf{q_{n}}\\
                  &= \mathbf{J}_{n}(\mathbf{p}_{n-1}+\mathbf{m_{n}}^{T}\mathbf{q_{n}})\\
     \end{aligned}
+    \label{eq:step_p}
 \end{equation}
-となる．
+となる．この更新式~(\ref{eq:step_J})，~(\ref{eq:step_p})とタイムステップ$n$で計測されたデータ$\mathbf{m_{n}}$と$\mathbf{q_{n}}$を用いて$\mathbf{p}_{n\_temp}$を算出し，$\mathbf{p}$の更新に利用するか，除外するか判断する．
 
+次に，除外するデータの決定方法について述べる．式~(\ref{eq:p2ck})を変形し$\mathbf{p}$から$k_1$，$k_2$，$c_1$，$c_2$は，
+\begin{equation}
+    \begin{aligned}
+        k_1 &= p_1 ,\\
+        k_2 &= \frac{p_2}{p_3 - \frac{p_4 p_1}{p_2} - \frac{p_2}{p_1}} ,\\
+        c_1 &= \frac{p_2}{p_4},\\
+        c_2 &= \frac{p_1}{p_3 - \frac{p_4 p_1}{p_2} - \frac{p_2}{p_1}} 
+    \end{aligned}
+\end{equation}
+のように算出できる．さらに，更新に用いる$\mathbf{p}_{n\_temp}$の条件は，
+\begin{equation}
+    \begin{aligned}
+        10^{-7} < \mathbf{p}_{n} < 10^{7} ,\\
+        10^{-7} < \left( p_3 - \frac{p_4 p_1}{p_2} - \frac{p_2}{p_1} \right)
+    \end{aligned}
+\end{equation}
+とした．
 
 \end{document}
 
