@@ -6,6 +6,8 @@
 \graphicspath{{0.Fig/}}
 %数式に関する設定
 \usepackage{amsmath}
+%添削時の色の設定%{\color{red} 赤色の文字}で使う
+\usepackage{xcolor} 
 
 \title{センシングフォーラム予稿テンプレート}
 \author{○金谷　孝一郎$^1$, 山川　雄司$^2$}
@@ -64,11 +66,11 @@ $^2$ University of Tokyo }
 グリッパに力センサを搭載しない場合，グリッパが目標位置に到達した際に，力入力は，0 [N]になるが，柔軟物からの反力は存在し，塑性変形が進行するにしたがって，柔軟物からの反力は減少する．
 本研究では，柔軟物の変形と反力の関係をバネとダンパを用いてモデル化し，グリッパの目標位置に到達した際の柔軟物の変形量を推定することを目的とする．
 \section{提案手法}
-一般に，弾性と粘性の挙動を表現するには，バネとダンパの要素が４つ必要である\cite{?}．4つの要素を用いた場合の組み合わせは，7種類存在し，リアルタイムで同定している研究/cite{??}と
+一般に，弾性と粘性の挙動を表現するには，バネとダンパの要素が４つ必要である\cite{?}．4つの要素を用いた場合の組み合わせは，7種類存在し，リアルタイムで同定している研究\cite{??}と
 比較するために，図~\ref{?}を用いる．図~\ref{?}のモデルの接触力$f$と，変形量$x$の関係は以下のように表される．
 \begin{equation}
     % \frac{k_1 k_2}{c_2}\int{x}\,dt + k_1 x = \frac{k_1k_2}{c_1 c_2}\iint{f}\,dt\,dt + \frac{k_1}{c_2}(1+\frac{k_2}{k_1}+\frac{c_2}{c_1})\int{f}\,dt + f
-p_1 {x}\,dt + p_2 \int{x} = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
+p_1 {x} + p_2 \int{x}\,dt = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
 \label{eq:BSmodel}
 \end{equation}
 % \begin{equation}
@@ -98,8 +100,8 @@ p_1 {x}\,dt + p_2 \int{x} = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
     \end{aligned}
 \end{equation}
 である．$k_1$,$k_2$は弾性係数であり，$c_1$,$c_2$は粘性減衰係数である．
-接触力$f$をモータの力入力を用い，変形量$x$は，グリッパの目標軌道を用いて，$p_1$,$p_2$,$p_3$,$p_4$を同定し，$k_1$,$k_2$,$c_1$,$c_2$を求める．
-そこで，式~\eqref{eq:BSmodel}を行列形式で表すと以下のようになる．
+接触力$f$は，モータの力入力を用い，変形量$x$は，グリッパの目標軌道を用いて，$p_1$,$p_2$,$p_3$,$p_4$を同定し，$k_1$,$k_2$,$c_1$,$c_2$を求める．
+式~(\ref{eq:BSmodel})を行列形式で表すと以下のようになる．
 \begin{equation}
     \mathbf{M}\mathbf{p} = \mathbf{q} 
 \end{equation}
@@ -107,27 +109,64 @@ p_1 {x}\,dt + p_2 \int{x} = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
 \begin{equation}
     \begin{aligned}
         \mathbf{M} &= \begin{bmatrix}
-            \int{x} & \iint{x} & -\int{f}\ & -\iint{f}\\
+            \boldsymbol{x} & \int{\boldsymbol{x}} & -\int{\boldsymbol{f}}\ & -\iint{\boldsymbol{f}}\\
         \end{bmatrix}, \\
         \mathbf{p}  &= \begin{bmatrix}
             p_1 \\
             p_2 \\
             p_3 \\
-            p_4
-        \end{bmatrix}, \quad\quad\quad\quad
-        \mathbf{q}   = f
-    \end{aligned}
-\end{equation}
-である．
-粘弾性係数$k_1$,$k_2$,$c_1$,$c_2$を同定させることは，行列$\mathbf{M}$の擬似逆行列を算出する問題に帰着する．
-しかし，エンコーダのノイズや，そのノイズが制御係数倍され，モータの力入力に現れる．これらのノイズにより粘弾性係数の同定精度が低下する課題がある．
-
+            p_4\begin{equation}
+                %     \mathbf{M}_n = \begin{bmatrix}
+                %         \mathbf{M}_{n-1} \\
+                %         \makebox[\widthof{$\mathbf{M}_{n-1}$}]{$\hrulefill$} 
+                %         \mathbf{m}_n
+                %     \end{bmatrix}
+                % \end{equation}
+粘弾性係数$k_1$,$k_2$,$c_1$,$c_2$を同定することは，行列$\mathbf{M}$の擬似逆行列を算出する問題に帰着する．
+% しかし，エンコーダのノイズや，そのノイズが{\color{red} 制御係数倍}され，モータの力入力に現れる．これらのノイズにより粘弾性係数の同定精度が低下する課題がある．
+しかし，エンコーダの計測結果には，ノイズが含まれ，位置制御するモータの力入力には，{\color{red} 制御係数倍}されたノイズが現れる．
+このノイズにより粘弾性係数の同定精度が低下するという課題がある．
 
 この課題を解決するために，まず，\ref{subsec:QR_traj_and_calculation}節では，行列$\mathbf{M}$の特異値に着目し，
 ノイズにロバストなグリッパの軌道生成方法と，その軌道に適した計算方法について述べる．
 次に，\ref{subsec:downsample}節では，粘弾性係数が0や無限大に近づくことを防ぐために，グリッパの軌道からデータを抽出する方法について述べる．
+
 \subsection{特異値分解を用いたグリッパの軌道生成と軌道に適した同定計算}\label{subsec:QR_traj_and_calculation}
+グリッパの軌道生成において，特異値分解を用いることで，ノイズにロバストな軌道を生成する．ノイズを明示的に扱うために，$\mathbf{q}$のノイズを$\mathbf{noise}$とし，
+$\mathbf{p}$を算出する式変形は，行列$\mathbf{M}$の擬似逆行列を算出し，
+\begin{equation}
+    \begin{aligned}
+    \mathbf{M}\mathbf{p} &= \mathbf{q} + \mathbf{noise}\\
+              \mathbf{p} &= \mathbf{M}^{\dagger}(\mathbf{q} + \mathbf{noise})\\ 
+              \mathbf{p} &= \sum \frac{1}{\gamma}vu^T(\mathbf{q}+\mathbf{noise})\\
+    \end{aligned}     
+\end{equation}
+のようになる．ここで，$\gamma$は行列$\mathbf{M}$の特異値であり，$O(\min({\mathbf{p}}))\gg\frac{O(\mathbf{noise})}{O(\mathbf{\gamma})}$のように$\gamma$を決定することで
+ノイズの影響を抑えることができる．
+
+次に，行列$\mathbf{M}$をQR分解し，$\mathbf{Q}$と$\mathbf{R}$を独立して生成することで，$\mathbf{M}$の特異値と1列目のグリッパの軌道を任意に決定する．
+QR分解を用いた$\mathbf{M}$の生成方法を図~\ref{QR分解}に示す．
+% $\mathbf{M}$の特異値の大きさを任意に決定し，グリッパの軌道である$\mathbf{M}$の1列目はグリッパが追従しやすい5次関数形状にする．
+
+対角行列$\mathbf{R}$は，上記でパラメータ$\mathbf{p}$の最小値と$\mathbf{noise}$のオーダを考慮して決定した$\gamma$を対角成分とした$4\times4$行列である．
+
+直交行列$\mathbf{Q}$は，図~\ref{QR分解}の上側ルートで生成される．
+1サイクル前に同定したパラメータ$\mathbf{p}$を柔軟物モデルに適応し，仮想的な5次関数形状の変形$x$を与えることで一時的な行列$\mathbf{M}_{\mathrm{temp}}$を生成し，QR分解することでQを得る．
+最終的に，独立して得られて$\mathbf{Q}$と$\mathbf{R}$を掛け合わせることで，行列$\mathbf{M}$を生成し，その1列目をグリッパの軌道とする．
+
+このグリッパの軌道生成に適したパラメータ$\mathbf{p}$の計算方法について述べる．粘弾性モデルの変形と反力の関係式(\ref{eq:BSmodel})を行列形式である式(\ref{eq:BSmodel_matrix})に変形する際，
+$\mathbf{q}$は$\boldsymbol{x} , \int{\boldsymbol{x}} , -\int{\boldsymbol{f}} , \iint{\boldsymbol{f}}$の5通りの選び方がある．上記で述べたグリッパの軌道は，$\mathbf{q}$のノイズの影響を抑える軌道になっており，
+$\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いることで
+提案した軌道生成が有効に働く．
 \subsection{粘弾性係数の妥当性を向上させるためのデータの抽出}\label{subsec:downsample}
+% \begin{equation}
+%     \mathbf{M}_n = \begin{bmatrix}
+%         \mathbf{M}_{n-1} \\
+%         \makebox[\widthof{$\mathbf{M}_{n-1}$}]{$\hrulefill$} 
+%         \mathbf{m}_n
+%     \end{bmatrix}
+% \end{equation}
+
 
 \end{document}
 
