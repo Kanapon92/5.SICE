@@ -4,19 +4,20 @@
 %図に関する設定
 \usepackage[dvipdfmx]{graphicx}
 \graphicspath{{0.Fig/}}
+\renewcommand{\figurename}{Fig.}
 %数式に関する設定
 \usepackage{amsmath}
 %添削時の色の設定%{\color{red} 赤色の文字}で使う
 \usepackage{xcolor} 
 
 \title{センシングフォーラム予稿テンプレート}
-\author{○金谷　孝一郎$^1$, 山川　雄司$^2$, 村上　健一$^3$}
+\author{○金谷　孝一郎$^1$, 村上　健一$^2$, 山川　雄司$^3$}
 \affiliation{
 $^1$ 東京大学,
 $^2$ 東京大学,
 $^3$ 東京大学 }
 \Etitle{Template for proceedings of Sensing Forum}
-\Eauthor{○Koichiro Kanaya , Yuji Yamakawa  and Kenichi Murakami}
+\Eauthor{○Koichiro Kanaya , Kenichi Murakami and Yuji Yamakawa  }
 \Eaffiliation{
 $^1$ University of Tokyo,
 $^2$ University of Tokyo,
@@ -252,12 +253,46 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 \end{equation}
 とした．
 
-\section{実験}
-グリッパは，．．．．
-研修医の超音波ガイド下での処置の練習対象として，鶏むね肉や，豆腐，ゼラチンを用いられ，縫合の練習対象としてバナナを用いている場合があることから，
+\section{評価実験}
+\subsection{実験システム}
+実験に用いたグリッパを図~\ref{fig:setup}に示す．駆動系にはシャフトモータ(...)，ドライバ(Panasonic製，MADHT1107L01)を用いた．
+本システムは1 kHzの制御周期で動作した．
+windows PC上でグリッパの軌道を生成し，シリアル通信(RS422,ボートレート...)でdSPACE DS1104に送信し，dSPACEがシステム全体のリアルタイム制御を管理した．
+反力の真値を確認するために，力センサ(レプトリノ社製，...)を用いた．
+研修医の超音波ガイド下での処置の練習対象として，鶏むね肉や，豆腐，ゼラチンを用いられ，縫合の練習対象としてバナナを用いている場合があることから\cite{?}\cite{?}\cite{?}，
 実験対象として，鶏むね肉，豆腐，ゼラチン，バナナを用いた．
-実験では，6秒間対象物を変形させ，さらに9秒間一定の目標位置を与えた．はじめの変形過程の6秒間で柔軟物モデルのパラメータ($k_1, k_2, c_1, c_2$)を同定し，目標位置が一定の9秒間で反力を推定し，力センサの計測結果と比較した．
+\subsection{評価方法}
+実験では，6秒間対象物を変形させ，その後9秒間一定の目標位置を与えた．変形過程の6秒間で柔軟物モデルのパラメータ($k_1, k_2, c_1, c_2$)を同定し，目標位置が一定の9秒間での反力を推定した．
+推定反力は力センサの計測結果との平均絶対誤差(MAE: Mean Absolute Error)を算出し評価した．
+実験では，2つのグリッパ軌道により反力推定精度を比較した．1つは，提案手法により生成したグリッパ軌道であり，もう1つは，それと同じ最終値を持つ5次関数形状の軌道である．5次関数の境界条件は，．．．．
+\subsection{結果}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{bar_result.pdf}
+    \caption{サンプル図}
+    \label{fig:bar_result}
+\end{figure}
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{test.pdf}
+    \caption{サンプル図}
+    \label{fig:twst}
+\end{figure}
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
 
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
+〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇
 \end{document}
 
 % end of sftemplate.tex
