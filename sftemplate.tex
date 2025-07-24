@@ -275,12 +275,18 @@ windows PC上でグリッパの軌道を生成し，シリアル通信(RS422,ボ
     \caption{bar result of MAE}  
     \label{fig:bar_result}
 \end{figure}
-図~\ref{fig:test}に鶏むね肉を対象とし，提案手法による反力推定と力センサの計測結果を示す．反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
+図~\ref{fig:pre_prop}に鶏むね肉を対象とし，提案手法による反力推定と力センサの計測結果を示す．反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{test.pdf}
+    \includegraphics[width=0.5\textwidth]{pre_prop.pdf}
     \caption{compare prediction force with force sensor}
-    \label{fig:test}
+    \label{fig:pre_prop}
+\end{figure}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{pre_quint.pdf}
+    \caption{compare prediction force with force sensor}
+    \label{fig:pre_quint}
 \end{figure}
 
 \section{考察}
@@ -293,7 +299,7 @@ windows PC上でグリッパの軌道を生成し，シリアル通信(RS422,ボ
 特異値に注目しサイクルごとに軌道を生成することは，単純な5次関数形状の軌道よりも，反力推定精度を向上させることができる．
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{compare_cycle_MAE.png}
+    \includegraphics[width=0.5\textwidth]{compare_cycle_MAE.pdf}
     \caption{compare MAE among cycles}
     \label{fig:compare_cycle_MAE}
 \end{figure}
@@ -302,11 +308,11 @@ windows PC上でグリッパの軌道を生成し，シリアル通信(RS422,ボ
 提案手法による軌道生成では，式~(\ref{eq:BSmodel_matrix})の$\mathbf{q}$に重畳したノイズの影響を抑えることを目的としており，
 軌道に適した同定計算として，$\mathbf{q}$に最もノイズの大きい$\boldsymbol{f}$を用いることを提案した．
 図~\ref{fig:compare_select5mode}に，$\mathbf{q}$の選び方を変えた場合のMAEを示す．
-$\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{symbol{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
+$\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
 よって，提案した同定計算は，グリッパの軌道に適しており，反力推定精度を向上させていることがわかる．
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{select5mode.png}
+    \includegraphics[width=0.5\textwidth]{select_different_q.pdf}
     \caption{compare 5 moethod of identification calculation}
     \label{fig:compare_select5mode}
 \end{figure}

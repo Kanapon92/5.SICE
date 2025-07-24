@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  24 JUL 2025 10:43
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  24 JUL 2025 15:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -212,38 +212,49 @@ Overfull \hbox (14.22638pt too wide) in paragraph at lines 274--275
  [][] 
  []
 
-File: 0.Fig//test.pdf Graphic file (type pdf)
-<0.Fig//test.pdf>
+File: 0.Fig//pre_prop.pdf Graphic file (type pdf)
+<0.Fig//pre_prop.pdf>
 
 Overfull \hbox (14.22638pt too wide) in paragraph at lines 281--282
  [][] 
  []
 
+File: 0.Fig//pre_quint.pdf Graphic file (type pdf)
+<0.Fig//pre_quint.pdf>
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 287--288
+ [][] 
+ []
+
 [3]
-File: 0.Fig//compare_cycle_MAE.png Graphic file (type bmp)
- <0.Fig//compare_cycle_MAE.png>
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 296--297
+File: 0.Fig//compare_cycle_MAE.pdf Graphic file (type pdf)
+<0.Fig//compare_cycle_MAE.pdf>
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 302--303
  [][] 
  []
 
-File: 0.Fig//select5mode.png Graphic file (type bmp)
-<0.Fig//select5mode.png>
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 309--310
+File: 0.Fig//select_different_q.pdf Graphic file (type pdf)
+<0.Fig//select_different_q.pdf>
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 315--316
  [][] 
  []
 
-[4] (./sftemplate.aux)
+[4] [5
+
+] (./sftemplate.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 2228 strings out of 478741
- 32708 string characters out of 5860982
+ 2234 strings out of 478741
+ 32932 string characters out of 5860982
  357351 words of memory out of 5000000
- 20652 multiletter control sequences out of 15000+600000
+ 20658 multiletter control sequences out of 15000+600000
  482137 words of font info for 77 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  55i,18n,62p,291b,300s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (4 pages, 31892 bytes).
+Output written on sftemplate.dvi (5 pages, 32424 bytes).
