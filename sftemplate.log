@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  25 JUL 2025 22:01
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 01:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -76,6 +76,8 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \float@box=\box67
 \@float@everytoks=\toks19
 \@floatcapt=\box68
+) (/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2021/10/15 v2.17l AMS math features
 \@mathmargin=\skip49
@@ -147,58 +149,47 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
-) (/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2021/07/05 v2.14 Sectioning titles
-\ttl@box=\box71
-\beforetitleunit=\skip52
-\aftertitleunit=\skip53
-\ttl@plus=\dimen175
-\ttl@minus=\dimen176
-\ttl@toksa=\toks25
-\titlewidth=\dimen177
-\titlewidthlast=\dimen178
-\titlewidthfirst=\dimen179
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-dvips.def
 File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
-\l__pdf_internal_box=\box72
+\l__pdf_internal_box=\box71
 \g__pdf_backend_object_int=\count275
-\l__pdf_backend_content_box=\box73
-\l__pdf_backend_model_box=\box74
+\l__pdf_backend_content_box=\box72
+\l__pdf_backend_model_box=\box73
 \g__pdf_backend_annotation_int=\count276
 \g__pdf_backend_link_int=\count277
 \g__pdf_backend_link_sf_int=\count278
 ) (./sftemplate.aux)
 \openout1 = `sftemplate.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 43.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 43.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 81.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 82.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 81.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 82.
  [1
 
 
@@ -206,39 +197,68 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
 File: 0.Fig//BS_model.pdf Graphic file (type pdf)
 <0.Fig//BS_model.pdf>
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 201.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 185.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 201.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 185.
  [2]
 File: 0.Fig//QR_traj.pdf Graphic file (type pdf)
 <0.Fig//QR_traj.pdf>
 
-Overfull \hbox (3.98119pt too wide) in paragraph at lines 232--234
+Overfull \hbox (3.98119pt too wide) in paragraph at lines 220--222
  [][] 
  []
 
+[3]
 File: 0.Fig//exp_setup.pdf Graphic file (type pdf)
 <0.Fig//exp_setup.pdf>
-[3]
+File: 0.Fig//bar_result.pdf Graphic file (type pdf)
+<0.Fig//bar_result.pdf>
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 321--322
+ [][] 
+ []
+
 File: 0.Fig//prop_quint.pdf Graphic file (type pdf)
 <0.Fig//prop_quint.pdf>
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 328--330
+ [][] 
+ []
+
 File: 0.Fig//compare_cycle_MAE.pdf Graphic file (type pdf)
 <0.Fig//compare_cycle_MAE.pdf>
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 343--344
+ [][] 
+ []
+
+[4]
 File: 0.Fig//select_differet_q_banana.pdf Graphic file (type pdf)
 <0.Fig//select_differet_q_banana.pdf>
- [4]
-Underfull \hbox (badness 7981) in paragraph at lines 392--394
+
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 356--358
+ [][] 
+ []
+
+
+Underfull \hbox (badness 7981) in paragraph at lines 390--392
 \OT1/cmr/m/n/10 min-i-mally in-va-sive surgery\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Curr Opin Urol\JY1/mc/m/n/10 ，
  []
 
-[5] (./sftemplate.aux) ) 
+[5] [6
+
+] (./sftemplate.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3896 strings out of 478741
- 63371 string characters out of 5860982
- 392494 words of memory out of 5000000
- 22304 multiletter control sequences out of 15000+600000
+ 3628 strings out of 478741
+ 60187 string characters out of 5860982
+ 383315 words of memory out of 5000000
+ 22037 multiletter control sequences out of 15000+600000
  482137 words of font info for 77 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 55i,18n,63p,315b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,63p,315b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (5 pages, 40972 bytes).
+Output written on sftemplate.dvi (6 pages, 42684 bytes).
