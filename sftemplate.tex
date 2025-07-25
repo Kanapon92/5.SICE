@@ -16,8 +16,8 @@
 %セクションの行間を狭くしたい
 \usepackage{titlesec}
 \titleformat{\section}[block]{\centering\normalfont\Large\bfseries}{\thesection}{1em}{} % セクションを中央揃え
-\titlespacing*{\section}{0pt}{8pt}{5pt} % \sectionの余白設定
-\titlespacing*{\subsection}{0pt}{4pt}{2pt} % \subsectionの余白設定
+\titlespacing*{\section}{0pt}{10pt}{5pt} % \sectionの余白設定
+\titlespacing*{\subsection}{0pt}{7pt}{5pt} % \subsectionの余白設定
 
 \title{柔軟物モデルとアクティブセンシングに基づいた\\軌道生成によるセンサレス反力推定}
 \author{○金谷　孝一郎$^1$, 村上　健一$^2$, 山川　雄司$^3$}
@@ -25,7 +25,7 @@
 $^1$ 東京大学,
 $^2$ 東京大学,
 $^3$ 東京大学 }
-\Etitle{Template for proceedings of Sensing Forum}
+\Etitle{Sensorless Reaction Force Estimation through Trajectory Generation \\ Based on Deformable Object Modeling and Active Sensing}
 \Eauthor{○Koichiro Kanaya , Kenichi Murakami and Yuji Yamakawa  }
 \Eaffiliation{
 $^1$ University of Tokyo,
@@ -33,7 +33,7 @@ $^2$ University of Tokyo,
 $^3$ University of Tokyo }
 \Abstract{%日本語アブストラクト（本文が英語の場合は英語でも可）.200字程度で記載．
 % 本研究では、柔軟物の粘弾性パラメータを推定し，力センサを用いずに接触力を推定する手法を提案する．
-本研究で，力センサを用いずにグリッパと柔軟物間の反力を推定するために，バネとダンパでモデル化した柔軟物のパラメータ同定法を提案する．
+本研究では，力センサを用いずにグリッパと柔軟物間の反力を推定するために，バネとダンパでモデル化した柔軟物のパラメータ同定法を提案する．
 提案手法では、アクティブセンシングに基づきグリッパの軌道を生成し，ノイズにロバストな同定計算を行う．
 実験では，鶏むね肉や豆腐，バナナを対象に，提案手法の反力推定精度を評価した．その結果，単純な5次関数のグリッパ軌道と比較して推定精度が向上することを確認した．
 % 本手法は，柔軟物の把持や操作をセンサレスで実現する基盤技術として有用である．
@@ -79,7 +79,7 @@ $^3$ University of Tokyo }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{緒言}
-　近年，医療分野では患者と医師双方にメリットがあるとして，低侵襲手術が注目されている\cite{MIS_ref1}．従来の開腹手術と比較し，低侵襲手術は小さな皮膚切開を介して手術を行う．
+　近年，医療分野では患者と医師双方にメリットがある低侵襲手術が注目されている\cite{MIS_ref1}．従来の開腹手術と比較し，低侵襲手術は小さな皮膚切開を介して手術を行う．
 これにより，患者には手術リスク，感染症リスクの低下\cite{MIS_ref2}や入院期間\cite{MIS_ref3}，回復期間の短縮\cite{MIS_ref4}といったメリットがある．
 また，外科医にも手術時の肉体的疲労の低減や，x線透視装置を用いた手術では，放射線被曝の低減といったメリットがある\cite{MIS_ref5}．
 
@@ -92,8 +92,8 @@ $^3$ University of Tokyo }
 % これらの要因による力センサの不在を解決するために，鉗子グリッパに搭載可能な力センサの開発\cite{?}や，力センサを用いないで接触力を推定する研究\cite{?}が行われており，本研究は後者に該当する．
 これらの要因による力センサの不在を解決するために，力センサを用いないで反力を推定する技術には需要がある．
 
- 推定反力は触覚フィードバックに使用され，ロボット用いた自動化では，最低0.5 kHz\cite{fps_ref1}，理想的には，1 kHzの更新頻度が必要とされる\cite{fps_ref2}．
-この更新頻度を満たすために，反力推定での計算効率が重要であり，本研究では，臓器等の柔軟物をバネとダンパでモデル化し，バネ定数と粘性減衰係数を同定し，反力推定を行う．
+ 推定反力は触覚フィードバックに使用され，ロボットを用いた自動化では，最低0.5 kHz\cite{fps_ref1}，理想的には，1 kHzの更新頻度が必要とされる\cite{fps_ref2}．
+この更新頻度を満たすために，反力推定での計算効率が重要である．本研究では臓器等の柔軟物を計算コストの小さいバネとダンパでモデル化し，バネ定数と粘性減衰係数を同定し，反力推定を行う．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{関連研究}
@@ -115,17 +115,20 @@ Xueらは，ワイヤ駆動する鉗子グリッパをケーブルプーリー�
 次に，有限要素法でモデル化する手法は，柔軟物の変形に対するモデルの精度が高い\cite{ref_FEM}．しかし，計算量が多く，リアルタイムでの反力推定には不向きであり，密度やヤング率，ポアソン比を事前に計測する必要がある．
 最後に，PBDでモデル化する手法は，柔軟物の変形に対するモデルの精度はバネダンパより高く，計算量は有限要素法よりも少ない\cite{ref_PBD}．しかし，柔軟物のせん断変形を計測する必要があり，マーカが必要となるが，臓器が出血することを考慮すると画像計測は難しいと考える．
 
-本研究では，マーカレスと高い計算効率を重視し，柔軟物をバネとダンパでモデル化し，グリッパが停止後の反力推定を実現する．
+本研究では，マーカレスと高い計算効率を重視し，柔軟物をバネとダンパでモデルを用い，力センサなしで柔軟物からの反力を推定する．
+反力推定は2段階で行い，まず，グリッパの目標位置と制御入力である力入力からバネ定数，粘性減衰係数を同定し，次に，同定したバネ定数，粘性減衰係数とグリッパのエンコーダの値を用いて反力を推定する．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{課題設定}
-　グリッパに力センサを搭載しない場合，グリッパが目標位置に到達した際に，力入力は0 [N]になるが，柔軟物からの反力は存在し，塑性変形が進行するにしたがって，柔軟物からの反力は減少する．
-本研究では，柔軟物の変形とグリッパの力入力の関係をバネとダンパを用いてモデル化し，グリッパが目標位置に到達し停止している際の柔軟物からの反力を推定する．
+　力センサを搭載していないグリッパは，エンコーダを用いた制御される．そのためグリッパが目標位置に到達し停止すると，制御入力である力入力は0 [N]になる．
+しかし，柔軟物の変形に伴い反力は変化し，力入力だけでは反力推定することが困難である．
+加えて，反力推定での計算コストの低減や，マーカを用いず画像やエンコーダのみで計測を完結したい需要がある．
+そこで，柔軟物をバネとダンパでモデル化し，グリッパが停止するまでの軌道を分割して生成し，バネ定数，粘性減衰係数を同定しやすくする軌道を提案する．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{提案手法}
 　弾性と塑性の両方の性質を表現する柔軟物モデルとして，図~\ref{fig:BS_model}に示すバーガースモデルが用いられる\cite{ref_MSD}．
-図~\ref{fig:BS_model}のモデルの反力$f$と，変形量$x$の関係は以下のように表される．
+図~\ref{fig:BS_model}のモデルの反力$f(t)$と，変形量$x(t)$の関係は以下のように表される．
 \begin{equation}
     % \frac{k_1 k_2}{c_2}\int{x}\,dt + k_1 x = \frac{k_1k_2}{c_1 c_2}\iint{f}\,dt\,dt + \frac{k_1}{c_2}(1+\frac{k_2}{k_1}+\frac{c_2}{c_1})\int{f}\,dt + f
     p_1 {x} + p_2 \int{x}\,dt = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
@@ -159,14 +162,14 @@ Xueらは，ワイヤ駆動する鉗子グリッパをケーブルプーリー�
     \label{eq:p2ck}
 \end{equation}
 である．
-\begin{figure}[htbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.25\textwidth]{BS_model.pdf}
     \caption{Bargers model}
     \label{fig:BS_model}
 \end{figure}
 $k_1$,$k_2$は弾性係数であり，$c_1$,$c_2$は粘性減衰係数である．以降これらをまとめて粘弾性係数と呼び，時間積分$\int \,dt, \iint \,dtdt $は$\int, \iint$と表記する．
-反力$f$は，モータの力入力を用い，変形量$x$は，接触後のグリッパの目標軌道を用いて，$p_1$,$p_2$,$p_3$,$p_4$を同定し，$k_1$,$k_2$,$c_1$,$c_2$を求める．
+反力$f$はモータの力入力を用い，変形量$x$は接触後のグリッパの目標軌道を用いて，$p_1$,$p_2$,$p_3$,$p_4$を同定し，$k_1$,$k_2$,$c_1$,$c_2$を求める．
 式~(\ref{eq:BSmodel})をタイムステップごとに行に格納し，行列形式で表すと，
 \begin{equation}
     \mathbf{M}\mathbf{p} = \mathbf{q} 
@@ -198,7 +201,7 @@ $k_1$,$k_2$は弾性係数であり，$c_1$,$c_2$は粘性減衰係数である�
 \subsection{QR分解を用いたグリッパの軌道生成と軌道に適した同定計算}\label{subsec:QR_traj_and_calculation}
 　$\mathbf{M}$の特異値に注目し，ノイズにロバストな軌道を生成する．%グリッパの軌道生成において，特異値分解を用いることで，ノイズにロバストな軌道を生成する．
 ノイズを明示的に扱うために，$\mathbf{q}$のノイズを$\mathbf{noise}$とする．
-$\mathbf{p}$の算出は，行列$\mathbf{M}$の擬似逆行列$\mathbf{M}^{\dagger}$を算出し，
+$\mathbf{p}$の算出は，行列$\mathbf{M}$の擬似逆行列$\mathbf{M}^{\dagger}$を用いて，
 \begin{equation}
     \begin{aligned}
     \mathbf{M}\mathbf{p} &= \mathbf{q} + \mathbf{noise}\\
@@ -207,16 +210,16 @@ $\mathbf{p}$の算出は，行列$\mathbf{M}$の擬似逆行列$\mathbf{M}^{\dag
             \mathbf{p} &= \mathbf{V}\mathbf{\Sigma}^{-1}\mathbf{U}^T(\mathbf{q}+\mathbf{noise})\\
     \end{aligned}
 \end{equation}
-ただし，
+のようになる．ただし，
 \begin{equation}
             \mathbf{\Sigma}^{-1} =
             \begin{bmatrix}
                  \mathrm{diag}(\frac{1}{\gamma}, \frac{1}{\gamma}, \frac{1}{\gamma}, \frac{1}{\gamma}), \mathbf{0}_{4 \times n}
             \end{bmatrix}
 \end{equation}
-のようになる．ここで，$\mathbf{V},\mathbf{U},\gamma$は行列$\mathbf{M}$を特異値分解したときの直交行列と特異値であり，$\gamma$を
+である．ここで，$\mathbf{V},\mathbf{U},\gamma$は行列$\mathbf{M}$を特異値分解したときの直交行列と特異値であり，$\gamma$を
 \begin{equation}
-    O(\min({\mathbf{p}})) \gg \frac{O(\mathbf{noise})}{O(\mathbf{\gamma})}
+    \mathrm{O}(\min({\mathbf{p}})) \gg \frac{\mathrm{O}(\mathbf{noise})}{\mathrm{O}(\mathbf{\gamma})}
     \label{eq:gamma}
 \end{equation}
 のように決定することで
@@ -224,7 +227,7 @@ $\mathbf{p}$の算出は，行列$\mathbf{M}$の擬似逆行列$\mathbf{M}^{\dag
 
 次に，行列$\mathbf{M}$をQR分解し，$\mathbf{Q}$と$\mathbf{R}$を独立して生成することで，$\mathbf{M}$の特異値と1列目のグリッパの軌道$\boldsymbol{x}$を任意に決定する．
 QR分解を用いた$\mathbf{M}$の生成方法を図~\ref{fig:QR_traj}に示す．
-\begin{figure}[htbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.48\textwidth]{QR_traj.pdf}
     \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
@@ -236,7 +239,7 @@ QR分解を用いた$\mathbf{M}$の生成方法を図~\ref{fig:QR_traj}に示す
 % 対角行列$\mathbf{R}$は，上記でパラメータ$\mathbf{p}$の最小値と$\mathbf{noise}$のオーダを考慮して決定した
 $\gamma$を対角成分とした$4\times4$行列である．
 直交行列$\mathbf{Q}$は，図~\ref{fig:QR_traj}の上側ルートで生成される．
-1サイクル前に同定したパラメータ$\mathbf{p}$を柔軟物モデルに適応し，仮想的な5次関数形状の変形量$\boldsymbol{x}_{temp}$を与えることで一時的な行列$\mathbf{M}_{\mathrm{temp}}$を生成し，QR分解することでQを得る．
+1サイクル前に同定したパラメータ$\mathbf{p}$を柔軟物モデルに適応し，仮想的な5次関数形状の変形量$\boldsymbol{x}_{\mathrm{temp}}$を与えることで一時的な行列$\mathbf{M}_{\mathrm{temp}}$を生成し，QR分解することでQを得る．
 最終的に，独立して得られた$\mathbf{Q}$と$\mathbf{R}$を掛け合わせることで，行列$\mathbf{M}$を生成し，その1列目をグリッパの軌道$\boldsymbol{x}$とする．
 
 このグリッパの軌道生成に適したパラメータ$\mathbf{p}$の計算方法について述べる．粘弾性モデルの変形と反力の関係式~(\ref{eq:BSmodel})を行列式~(\ref{eq:BSmodel_matrix})に変形する際，
@@ -246,7 +249,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{粘弾性係数の妥当性を向上させるためのデータの抽出}\label{subsec:downsample}
-　式~(\ref{eq:Mp_q})は不能であり，求める解$\mathbf{p}$が4要素であるのに対し，方程式の数が過剰であり矛盾する式が含まれる．一部の矛盾する式より粘弾性係数が負になり，物理的に妥当性を失う．
+　式~(\ref{eq:Mp_q})は不能であり，求める解$\mathbf{p}$が4要素であるのに対し，方程式の数が過剰であり矛盾する式が含まれる．一部の矛盾する式より粘弾性係数が負になり，物理的に妥当性を失う場合がある．
 そこで，式~(\ref{eq:Mp_q})の擬似逆行列の算出方法を逐次的に行い，粘弾性係数が物理的に妥当でないデータは除外する．
 まず，擬似逆行列の逐次的な算出方法について述べる．タイムステップが$n-1$までの行列$\mathbf{M}$を$\mathbf{M}_{n-1}$とし，$n$番目のタイムステップのデータ$\mathbf{m}_n$として，タイムステップ$n$での行列$\mathbf{M}_n$を，
 \begin{equation}
@@ -277,7 +280,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
     \end{aligned}
     \label{eq:step_p}
 \end{equation}
-となる．この更新式~(\ref{eq:step_J})，~(\ref{eq:step_p})とタイムステップ$n$で計測されるデータ$\mathbf{m_{n}}$と$\mathbf{q_{n}}$を用いて$\mathbf{p}_{n\_temp}$を算出し，$\mathbf{p}_{n+1}$の更新に利用するか，除外するか判断する．
+となる．この更新式~(\ref{eq:step_J})，~(\ref{eq:step_p})とタイムステップ$n$で計測されるデータ$\mathbf{m_{n}}$と$\mathbf{q_{n}}$を用いて$\mathbf{p}_{n\_temp}$を算出し，$\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 
 次に，除外するデータの決定方法について述べる．式~(\ref{eq:p2ck})を変形し$\mathbf{p}$から$k_1$，$k_2$，$c_1$，$c_2$は，
 \begin{equation}
@@ -291,7 +294,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 のように算出できる．さらに，更新に用いる$\mathbf{p}_{n\_temp}=[p'_1,p'_2,p'_3,p'_4]^{T}$の条件は，
 \begin{equation}
     \begin{aligned}
-        10^{-7} < \mathbf{p}_{n\_temp} < 10^{7} ,\\
+        10^{-7} < {p}'_{i} < 10^{7} ,\\
         10^{-7} < \left( p'_3 - \frac{p'_4 p'_1}{p'_2} - \frac{p'_2}{p'_1} \right)
     \end{aligned}
 \end{equation}
@@ -302,7 +305,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 \subsection{実験システム}
 　実験に用いたグリッパと実験対象の柔軟物を図~\ref{fig:exp_setup}に示す．駆動系にはシャフトモータ (日本パルスモータ社製；SL083)を用い，1 kHzの制御周期で動作した．
 % ，ドライバ(Panasonic製，MADHT1107L01)を用いた．本システムは1 kHzの制御周期で動作した．
-\begin{figure}[htbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.35\textwidth]{exp_setup.pdf}
     \caption{experimental setup and test object}
@@ -311,7 +314,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 % windows PC上でグリッパの軌道を生成し，シリアル通信(RS422,ボートレート...)でdSPACE DS1104に送信し，dSPACEがシステム全体のリアルタイム制御を管理した．
 反力の真値を確認するために，力センサ(レプトリノ社製；PFS030YA151G6)を用いた．
 研修医の超音波ガイド下での処置の練習対象として，鶏むね肉や，豆腐，ゼラチンを用いられ，縫合の練習対象としてバナナ,豆腐，ゼラチンを用いている場合があることから\cite{exp_ref1}\cite{exp_ref2}\cite{exp_ref3}，
-実験対象として，鶏むね肉，豆腐，バナナを用いた
+実験対象として，鶏むね肉，豆腐，バナナを用いた．
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%．
 \subsection{評価方法}
 　実験では，6秒間対象物を変形させ，その後9秒間グリッパに一定の目標位置を与えた．
@@ -319,32 +322,11 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 この6秒間で粘弾性係数($k_1, k_2, c_1, c_2$)を同定し，目標位置が一定の9秒間での反力を推定した．
 推定反力は力センサの計測結果との平均絶対誤差(MAE: Mean Absolute Error)を算出し評価した．
 実験では，2つのグリッパ軌道により反力推定精度を比較した．
-1つめは，提案手法による軌道であり，変形過程の6秒を2秒ごとの3サイクルに分割し生成した．もう1つは，提案手法と同じ最終値を持つ5次関数形状の軌道である．
+1つ目は，提案手法による軌道であり，変形過程の6秒を2秒ごとの3サイクルに分割し生成した．もう1つは，提案手法と同じ最終値を持つ5次関数形状の軌道である．
 % 1つは，提案手法により生成したグリッパ軌道であり，もう1つは，それと同じ最終値を持つ5次関数形状の軌道である．
 5次関数の境界条件は，図~{\ref{fig:QR_traj}}の直交行列の生成時に用いた境界条件と同じである．
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{結果}
-　図~\ref{fig:bar_result}に3つの対象物に対する推定反力のMAEを示す．すべての対象物において，提案手法により生成したグリッパ軌道の方が5次関数形状の軌道よりもMAEが小さく，反力推定精度が高いことがわかる．
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.43\textwidth]{bar_result.pdf}
-    \caption{bar result of MAE}  
-    \label{fig:bar_result}
-\end{figure}
-図~\ref{fig:prop_quint}に鶏むね肉を対象とし，反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
-% \begin{figure}[htbp]
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{pre_prop.pdf}
-%     \caption{compare prediction force with force sensor}
-%     \label{fig:pre_prop}
 % \end{figure}
-% \begin{figure}[htbp]
-%     \centering
-%     \includegraphics[width=0.5\textwidth]{pre_quint.pdf}
-%     \caption{compare prediction force with force sensor}
-%     \label{fig:pre_quint}
-% \end{figure}
-\begin{figure}[htbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.43\textwidth]{prop_quint.pdf}
     \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
@@ -359,7 +341,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 5次関数形状の軌道でMAEが減少しない原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程の6秒間の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためである．
 2つの軌道のサイクルごとでのMAEの傾向は，残りの2つの対象物(鶏肉，バナナ)でも同様であった．
 特異値に注目しサイクルごとに軌道を生成することは，単純な5次関数形状の軌道よりも，反力推定精度を向上させることができる．
-\begin{figure}[htbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.43\textwidth]{compare_cycle_MAE.pdf}
     \caption{compare MAE among cycles (tofu)}
@@ -372,7 +354,7 @@ $\mathbf{q}$にもっともノイズの大きい$\boldsymbol{f}$を用いるこ�
 図~\ref{fig:compare_select5mode}に，対象物をバナナとし$\mathbf{q}$の選び方を変えた場合のMAEを示す．
 $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
 よって，提案した同定計算は，グリッパの軌道に適しており，反力推定精度を向上させていることがわかる．
-\begin{figure}[htbp]
+\begin{figure}[tb]
     \centering
     \includegraphics[width=0.43\textwidth]{select_differet_q_banana.pdf}
     \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
@@ -380,10 +362,11 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
     \label{fig:compare_select5mode}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{まとめ}
+\section{結言}
 %〇〇するために，XXを提案した．実験をもとに，CCを確認した．今後の展望として，
-　本研究では，力センサを用いないで接触力を推定するために，柔軟物の粘弾性パラメータをノイズにロバストに算出する課題を設定し，
-グリッパの軌道を生成と軌道に適した同定計算を提案した．
+　本研究では，力センサを用いずに反力を推定する手法を提案した．
+柔軟物の粘弾性パラメータをノイズにロバストに算出する課題を設定し，
+グリッパの軌道生成と軌道に適した同定計算，計測データのダウンサンプリングを提案した．
 実験により，提案手法により生成したグリッパの軌道を用いることで，5次関数形状の軌道よりも反力推定精度が向上することを確認した．
 今後の展望として，柔軟物把持，柔軟物から異物を引き剥がす等の具体的なタスクをセンサレスで実現する．
 \begin{thebibliography}{9}
@@ -416,23 +399,27 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
     Schostek S, Schurr MO, Buess GF：
     Review on aspects of artificial tactile feedback in laparoscopic surgery，Med Eng Phys，pp.887–898, 2009.
 
+    
+    %スペース的制約
+    %{MIS_ref1}
+    \bibitem{MIS_ref6}%生体適合性
+    Trejos AL, Escoto A, Hughes D, Naish MD, Patel RV：
+    A sterilizable force-sensing instrument for laparoscopic surgery，pp.157–162，2014.
+
     \bibitem{MIS_learning_time}%外科医の習得時間
     Shahzada KS, Yurkewich A, Xu R, Patel RV：
     Sensorization of a surgical robotic instrument for force sensing，pp.153–162，2016.
+    
+    \bibitem{MIS_ref7}%殺菌
+    Trejos AL, Escoto A, Naish MD, Patel RV：
+    Design and evaluation of a sterilizable force sensing instrument for minimally invasive surgery，IEEE Sensors Journal，pp.3983–3993, 2017.
+
     \bibitem{RMIS}%ロボット支援手術での力センサの必要性
     Amirabdollahian F, Livatino S, Vahedi B, Gudipati R, Sheen P, Gawrie-Mohan S, Vasdev N：
     Prevalence of haptic feedback in robot-mediated surgery: a systematic review of literature，Journal of robotic surgery，pp.11–25, 2018.
 
 
 
-    %スペース的制約
-    %{MIS_ref1}
-    \bibitem{MIS_ref6}%生体適合性
-    Trejos AL, Escoto A, Hughes D, Naish MD, Patel RV：
-    A sterilizable force-sensing instrument for laparoscopic surgery，pp.157–162，2014.
-    \bibitem{MIS_ref7}%殺菌
-    Trejos AL, Escoto A, Naish MD, Patel RV：
-    Design and evaluation of a sterilizable force sensing instrument for minimally invasive surgery，IEEE Sensors Journal，pp.3983–3993, 2017.
 
 
     %%%fps
