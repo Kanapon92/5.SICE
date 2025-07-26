@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 09:28
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 10:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -201,16 +201,11 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 190.
  [2]
-File: 0.Fig//QR_traj.pdf Graphic file (type pdf)
-<0.Fig//QR_traj.pdf>
-
-Overfull \hbox (3.98119pt too wide) in paragraph at lines 224--226
- [][] 
- []
-
-[3]
+File: 0.Fig//QR_traj_eng.pdf Graphic file (type pdf)
+<0.Fig//QR_traj_eng.pdf>
 File: 0.Fig//exp_setup.pdf Graphic file (type pdf)
 <0.Fig//exp_setup.pdf>
+ [3]
 File: 0.Fig//bar_result.pdf Graphic file (type pdf)
 <0.Fig//bar_result.pdf>
 
@@ -245,18 +240,14 @@ Underfull \hbox (badness 7981) in paragraph at lines 401--403
 \OT1/cmr/m/n/10 min-i-mally in-va-sive surgery\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Curr Opin Urol\JY1/mc/m/n/10 ，
  []
 
-[5] [6] (./sftemplate.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[5] [6] (./sftemplate.aux) ) 
 Here is how much of TeX's memory you used:
- 3629 strings out of 478741
- 60201 string characters out of 5860982
- 381315 words of memory out of 5000000
- 22038 multiletter control sequences out of 15000+600000
+ 3630 strings out of 478741
+ 60244 string characters out of 5860982
+ 386315 words of memory out of 5000000
+ 22039 multiletter control sequences out of 15000+600000
  482137 words of font info for 77 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 55i,18n,63p,315b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,18n,63p,315b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (6 pages, 43968 bytes).
+Output written on sftemplate.dvi (6 pages, 43908 bytes).
