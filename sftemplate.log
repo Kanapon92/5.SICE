@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 10:41
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 11:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -209,21 +209,21 @@ File: 0.Fig//exp_setup.pdf Graphic file (type pdf)
 File: 0.Fig//bar_result.pdf Graphic file (type pdf)
 <0.Fig//bar_result.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 332--333
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 333--334
  [][] 
  []
 
 File: 0.Fig//prop_quint.pdf Graphic file (type pdf)
 <0.Fig//prop_quint.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 338--340
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 339--341
  [][] 
  []
 
 File: 0.Fig//compare_cycle_MAE.pdf Graphic file (type pdf)
 <0.Fig//compare_cycle_MAE.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 354--355
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 356--357
  [][] 
  []
 
@@ -231,12 +231,12 @@ Overfull \hbox (14.22638pt too wide) in paragraph at lines 354--355
 File: 0.Fig//select_differet_q_banana.pdf Graphic file (type pdf)
 <0.Fig//select_differet_q_banana.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 367--369
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 369--371
  [][] 
  []
 
 
-Underfull \hbox (badness 7981) in paragraph at lines 401--403
+Underfull \hbox (badness 7981) in paragraph at lines 403--405
 \OT1/cmr/m/n/10 min-i-mally in-va-sive surgery\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Curr Opin Urol\JY1/mc/m/n/10 ，
  []
 
@@ -250,4 +250,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  55i,18n,63p,315b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (6 pages, 43908 bytes).
+Output written on sftemplate.dvi (6 pages, 43900 bytes).
