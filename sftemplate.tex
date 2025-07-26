@@ -258,21 +258,21 @@ $\mathbf{q}$に最もノイズの大きい$\boldsymbol{f}$を用いることで
         \end{bmatrix}
     \end{aligned}
 \end{equation}
-とする．このとき$(\mathbf{M_{n}}^{\mathrm{T}}\mathbf{M_{n}})^{-1}$を$\mathbf{J}_{n}$とし，$\mathbf{J}_{n}$の更新式はWoodburyの公式を用いて,
+とする．このとき$(\mathbf{M}_{n}^{\mathrm{T}}\mathbf{M}_{n})^{-1}$を$\mathbf{J}_{n}$とし，$\mathbf{J}_{n}$の更新式はWoodburyの公式を用いて,
 \begin{equation}
     \begin{aligned}
-    \mathbf{J}_n &= (\mathbf{M_{n}}^{\mathrm{T}}\mathbf{M_{n}})^{-1}\\
-                 &= (\mathbf{M_{n-1}}^{\mathrm{T}}\mathbf{M_{n-1}} + \mathbf{m_{n}}^{\mathrm{T}}\mathbf{m_{n}})^{-1}\\
-                 &= \mathbf{J}_{n-1} - \frac{\mathbf{J}_{n-1}\mathbf{m_{n}}\mathbf{m_{n}}^{\mathrm{T}}\mathbf{J}_{n-1}}{1+\mathbf{m_{n}}^{\mathrm{T}}\mathbf{J}_{n-1}\mathbf{m_{n}}}
+    \mathbf{J}_n &= (\mathbf{M}_{n}^{\mathrm{T}}\mathbf{M}_{n})^{-1}\\
+                 &= (\mathbf{M}_{n-1}^{\mathrm{T}}\mathbf{M}_{n-1} + \mathbf{m}_{n}^{\mathrm{T}}\mathbf{m}_{n})^{-1}\\
+                 &= \mathbf{J}_{n-1} - \frac{\mathbf{J}_{n-1}\mathbf{m}_{n}\mathbf{m}_{n}^{\mathrm{T}}\mathbf{J}_{n-1}}{1+\mathbf{m}_{n}^{\mathrm{T}}\mathbf{J}_{n-1}\mathbf{m}_{n}}
     \end{aligned}
     \label{eq:step_J}
 \end{equation}
 と表せる．$\mathbf{p}$の$n-1$番目と$n$番目の関係は，
 \begin{equation}
     \begin{aligned}
-    \mathbf{p}_n &= (\mathbf{M_{n}}^{\mathrm{T}}\mathbf{M_{n}})^{-1}\mathbf{M_{n}}^{\mathrm{T}}\mathbf{q_{n}}\\
-                 &= \mathbf{J}_{n}\mathbf{M_{n}}^{\mathrm{T}}\mathbf{q_{n}}\\
-                 &= \mathbf{J}_{n}(\mathbf{p}_{n-1}+\mathbf{m_{n}}^{\mathrm{T}}\mathbf{q_{n}})\\
+    \mathbf{p}_n &= (\mathbf{M}_{n}^{\mathrm{T}}\mathbf{M}_{n})^{-1}\mathbf{M}_{n}^{\mathrm{T}}\mathbf{q}_{n}\\
+                 &= \mathbf{J}_{n}\mathbf{M}_{n}^{\mathrm{T}}\mathbf{q}_{n}\\
+                 &= \mathbf{J}_{n}(\mathbf{p}_{n-1}+\mathbf{m}_{n}^{\mathrm{T}}\mathbf{q}_{n})\\
     \end{aligned}
     \label{eq:step_p}
 \end{equation}
@@ -347,10 +347,10 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 サイクルを重ねるごとに反力の推定精度が向上することが期待される．
 図~\ref{fig:compare_cycle_MAE}に，対象物を豆腐とし，軌道生成のサイクルごとのMAEを示す．提案手法では，3サイクル目で推定反力のMAEが減少することがわかる．
 % 一方で，5次関数形状の軌道では，変形過程の6秒間で推定反力のMAEの減少が見られない．
-一方で，5次関数形状の軌道では，変形過程全体をとしてMAEが減少傾向を示さない．
+一方で，5次関数形状の軌道では，変形過程全体としてMAEが減少傾向を示さない．
 5次関数形状の軌道でMAEが減少しない原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程の6秒間の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためである．
 2つの軌道のサイクルごとでのMAEの傾向は，残りの2つの対象物(鶏肉，バナナ)でも同様であった．
-このことから特異値に注目しサイクルごとに軌道を生成することは，単純な5次関数形状の軌道よりも，反力推定精度の向上に貢献している．
+このことから特異値に注目しサイクルごとに軌道を生成することが，反力推定精度の向上に貢献している．
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.5\textwidth]{compare_cycle_MAE.pdf}
