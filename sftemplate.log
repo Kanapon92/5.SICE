@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 01:16
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  26 JUL 2025 09:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -197,14 +197,14 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
 File: 0.Fig//BS_model.pdf Graphic file (type pdf)
 <0.Fig//BS_model.pdf>
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 185.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 190.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 185.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 190.
  [2]
 File: 0.Fig//QR_traj.pdf Graphic file (type pdf)
 <0.Fig//QR_traj.pdf>
 
-Overfull \hbox (3.98119pt too wide) in paragraph at lines 220--222
+Overfull \hbox (3.98119pt too wide) in paragraph at lines 224--226
  [][] 
  []
 
@@ -214,21 +214,21 @@ File: 0.Fig//exp_setup.pdf Graphic file (type pdf)
 File: 0.Fig//bar_result.pdf Graphic file (type pdf)
 <0.Fig//bar_result.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 321--322
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 332--333
  [][] 
  []
 
 File: 0.Fig//prop_quint.pdf Graphic file (type pdf)
 <0.Fig//prop_quint.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 328--330
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 338--340
  [][] 
  []
 
 File: 0.Fig//compare_cycle_MAE.pdf Graphic file (type pdf)
 <0.Fig//compare_cycle_MAE.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 343--344
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 354--355
  [][] 
  []
 
@@ -236,29 +236,27 @@ Overfull \hbox (14.22638pt too wide) in paragraph at lines 343--344
 File: 0.Fig//select_differet_q_banana.pdf Graphic file (type pdf)
 <0.Fig//select_differet_q_banana.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 356--358
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 367--369
  [][] 
  []
 
 
-Underfull \hbox (badness 7981) in paragraph at lines 390--392
+Underfull \hbox (badness 7981) in paragraph at lines 401--403
 \OT1/cmr/m/n/10 min-i-mally in-va-sive surgery\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Curr Opin Urol\JY1/mc/m/n/10 ，
  []
 
-[5] [6
-
-] (./sftemplate.aux)
+[5] [6] (./sftemplate.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 3628 strings out of 478741
- 60187 string characters out of 5860982
- 383315 words of memory out of 5000000
- 22037 multiletter control sequences out of 15000+600000
+ 3629 strings out of 478741
+ 60201 string characters out of 5860982
+ 381315 words of memory out of 5000000
+ 22038 multiletter control sequences out of 15000+600000
  482137 words of font info for 77 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  55i,18n,63p,315b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (6 pages, 42684 bytes).
+Output written on sftemplate.dvi (6 pages, 43968 bytes).
