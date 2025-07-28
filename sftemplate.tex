@@ -1,14 +1,14 @@
 \documentclass[a4paper]{jarticle}
 \usepackage{sf}
-
 %図に関する設定
 \usepackage[dvipdfmx]{graphicx}
 \graphicspath{{0.Fig/}}
 \renewcommand{\figurename}{Fig.}
 \usepackage{caption}%図のキャプションの幅
 \usepackage{float} %図の位置を強制的に指定するためのパッケージ
-% \setlength{\textfloatsep}{3pt} % 図と本文の間の余白を5ptに設定
-% \setlength{\intextsep}{3pt}    % 図と本文の間の余白を5ptに設定
+\setlength{\textfloatsep}{10pt} % 図と本文の間の余白を5ptに設定
+\setlength{\intextsep}{10pt}    % 図と本文の間の余白を5ptに設定
+\setlength{\floatsep}{10pt}     % 図と図の間の余白を5ptに設定
 \usepackage{placeins}
 %表に関する設定
 \usepackage{subcaption} 
@@ -21,7 +21,9 @@
 \usepackage{titlesec}
 \titleformat{\section}[block]{\centering\normalfont\Large\bfseries}{\thesection}{1em}{} % セクションを中央揃え
 \titlespacing*{\section}{0pt}{10pt}{5pt} % \sectionの余白設定
-\titlespacing*{\subsection}{0pt}{7pt}{5pt} % \subsectionの余白設定
+\titlespacing*{\subsection}{0pt}{10pt}{5pt} % \subsectionの余白設定
+\titlespacing*{\subsubsection}{0pt}{10pt}{5pt}
+
 
 \title{柔軟物モデルとアクティブセンシングに基づいた\\軌道生成によるセンサレス反力推定}
 \author{○金谷　孝一郎$^1$, 村上　健一$^1$, 山川　雄司$^1$}
@@ -35,7 +37,11 @@ $^1$ The University of Tokyo}
 % 本研究では、柔軟物の粘弾性パラメータを推定し，力センサを用いずに接触力を推定する手法を提案する．
 本研究では，力センサを用いずにグリッパと柔軟物間の反力を推定するために，バネとダンパでモデル化した柔軟物のパラメータ同定法を提案する．
 提案手法では、アクティブセンシングに基づきグリッパの軌道を生成し，ノイズにロバストな同定計算を行う．
-実験では，鶏むね肉や豆腐，バナナを対象に，提案手法の反力推定精度を評価した．その結果，単純な5次関数のグリッパ軌道と比較して推定精度が向上することを確認した．
+{\color{blue}
+% 実験では，鶏むね肉や豆腐，バナナを対象に，提案手法の反力推定精度を評価した．
+実験では鶏むね肉を対象に提案手法の反力推定精度を評価した．
+}
+その結果，単純な5次関数のグリッパ軌道と比較して推定精度が向上することを確認した．
 % 本手法は，柔軟物の把持や操作をセンサレスで実現する基盤技術として有用である．
 }
 
@@ -186,13 +192,14 @@ $k_1$,$k_2$は弾性係数であり，$c_1$,$c_2$は粘性減衰係数である�
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{QR分解を用いたグリッパの軌道生成と軌道に適した同定計算}\label{subsec:QR_traj_and_calculation}
 　$\mathbf{M}$の特異値に注目し，ノイズにロバストな軌道を複数のサイクルに分割して生成する．
+本節では，
 \ref{subsubsec:noise_robust}項でノイズにロバストな特異値の決定方法，
 \ref{subsubsec:QR_traj_gen}項で各サイクルでのQR分解を用いたグリッパの軌道生成方法，
 \ref{subsubsec:approproate_calculation}項で軌道に適した同定計算方法について述べる．
 
 \subsubsection{ノイズにロバストな特異値の決定方法}
 \label{subsubsec:noise_robust}
-まず，ノイズを明示的に扱うために，$\mathbf{q}$のノイズを$\mathbf{noise}$とする．
+　まず，ノイズを明示的に扱うために，$\mathbf{q}$のノイズを$\mathbf{noise}$とする．
 $\mathbf{p}$の算出は，行列$\mathbf{M}$の擬似逆行列$\mathbf{M}^{\dagger}$を用いて，
 \begin{equation}
     \begin{aligned}
@@ -218,7 +225,7 @@ $\mathbf{p}$の算出は，行列$\mathbf{M}$の擬似逆行列$\mathbf{M}^{\dag
 
 \subsubsection{QR分解を用いたグリッパの軌道生成}
 \label{subsubsec:QR_traj_gen}
-次に，行列$\mathbf{M}$の特異値$\gamma$が式~(\ref{eq:gamma})を満たすように，グリッパの軌道$\boldsymbol{x}$をQR分解を用いて生成する．図~{\ref{fig:QR_traj}}にその概略を示す．
+　次に，行列$\mathbf{M}$の特異値$\gamma$が式~(\ref{eq:gamma})を満たすように，グリッパの軌道$\boldsymbol{x}$をQR分解を用いて生成する．図~{\ref{fig:QR_traj}}にその概略を示す．
 $\boldsymbol{x}$は$\mathbf{M}$の1列目であるので，前サイクルでの同定結果($\mathbf{p},\gamma$)を用いて，
 仮想的な$\mathbf{M}_{\mathrm{v}}$を作り，その１列目を抽出し本サイクルでの軌道$\boldsymbol{x}$とする．
 $\mathbf{M_{\mathrm{v}}}$はQR分解を用いて生成しする．所望の$\gamma$と軌道形状が5次関数になるように直交行列$\mathbf{Q}$と対角行列$\mathbf{R}$は独立に決定する．
@@ -240,7 +247,7 @@ $\gamma$を対角成分とした$4\times4$行列とする．
 
 \subsubsection{軌道に適した同定計算方法}
 \label{subsubsec:approproate_calculation}
-最後に，このグリッパの軌道生成に適したパラメータ$\mathbf{p}$の計算方法について述べる．
+　最後に，このグリッパの軌道生成に適したパラメータ$\mathbf{p}$の計算方法について述べる．
 粘弾性モデルの変形と反力の関係式~(\ref{eq:BSmodel})を行列式~(\ref{eq:Mp_q})(\ref{eq:BSmodel_matrix})に変形する際，
 $\mathbf{q}$には$\boldsymbol{f}, \int{\boldsymbol{f}} , \iint{\boldsymbol{f}}, \boldsymbol{x} , \int{\boldsymbol{x}}$の5通りの選び方がある．上記で述べたグリッパの軌道は，$\mathbf{q}$のノイズの影響を抑える軌道になっており，
 $\mathbf{q}$に最もノイズの大きい$\boldsymbol{f}$を用いることで
@@ -316,8 +323,10 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 \end{figure}
 % windows PC上でグリッパの軌道を生成し，シリアル通信(RS422,ボートレート...)でdSPACE DS1104に送信し，dSPACEがシステム全体のリアルタイム制御を管理した．
 反力の真値を確認するために，力センサ(レプトリノ社製；PFS030YA151G6)を用いた．
-研修医の超音波ガイド下での処置の練習対象として，鶏むね肉や，豆腐，ゼラチンが用いられ，縫合の練習対象としてバナナ,豆腐，ゼラチンを用いる場合があることから\cite{exp_ref1}\cite{exp_ref2}\cite{exp_ref3}，
-実験対象として，鶏むね肉，豆腐，バナナを用いた．
+% 研修医の超音波ガイド下での処置の練習対象として，鶏むね肉や，豆腐，ゼラチンが用いられ，縫合の練習対象としてバナナ,豆腐，ゼラチンを用いる場合があることから\cite{exp_ref1}\cite{exp_ref2}\cite{exp_ref3}，
+% 実験対象として，鶏むね肉，豆腐，バナナを用いた．
+研修医の超音波ガイド下での処置の練習対象として，鶏むね肉や，豆腐，ゼラチンが用いられることから\cite{exp_ref1}\cite{exp_ref3}，
+実験対象として，鶏むね肉を用いた．
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%．
 \subsection{評価方法}
 　1回の実験は15秒間で行い，はじめの6秒間を変形段階，次の9秒間を停止段階とした．
@@ -329,11 +338,21 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 もう1つは，提案手法と同じ最終値を持つ5次関数形状の軌道である(Quint.：quintic polynomial)．
 % 1つは，提案手法により生成したグリッパ軌道であり，もう1つは，それと同じ最終値を持つ5次関数形状の軌道である．
 5次関数の境界条件は，図~{\ref{fig:QR_traj}}の直交行列の生成時に用いた境界条件と同じである．
+{\color{blue}
+それぞれの軌道に対して実験を5回行った．
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{結果}
-　図~\ref{fig:bar_result}に3つの対象物に対する推定反力のMAEを示す．すべての対象物において，提案手法により生成したグリッパ軌道の方が5次関数形状の軌道よりもMAEが小さく，反力推定精度が高いことがわかる．
-図~\ref{fig:prop_quint}に鶏むね肉を対象とし，反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
-バナナと豆腐も同様な類似であった．
+% 　図~\ref{fig:bar_result}に3つの対象物に対する推定反力のMAEを示す．すべての対象物において，提案手法により生成したグリッパ軌道の方が5次関数形状の軌道よりもMAEが小さく，反力推定精度が高いことがわかる．
+　図~\ref{fig:bar_result}に反力推定のMAEを示す．提案手法により生成したグリッパ軌道の方が5次関数形状の軌道よりもMAEが小さく，反力推定精度が高いことがわかる．
+% 図~\ref{fig:prop_quint}に鶏むね肉を対象とし，反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．バナナと豆腐も同様な類似であった．
+図~\ref{fig:prop_quint}に反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
+{\color{blue}表~\ref{tab:double_subtables_transposed}に5回の実験での粘弾性係数の同定結果を示す．
+提案手法と比較し5次関数形状の軌道では，$c_1$の標準偏差が大きい．
+グリッパを対象物から離した後，対象物に残留する塑性変形量を計測することで$c_1$の同定精度は向上する\cite{reult_higasimori}.
+本研究では変形過程のみで粘弾性係数を同定するため，4つの係数の中で$c_1$の同定が難しい．
+5次関数形状の軌道と比較し，提案手法でのMAEと$c_1$の標準偏差が小さいことから，提案手法では真値に近い値を安定して算出できたと考える．
+}
 \begin{figure}[tb]
     \centering
     % \includegraphics[width=0.5\textwidth]{bar_result.pdf}
@@ -376,7 +395,7 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 % \end{table}
 \begin{table}[tb]
     \centering
-    \caption{Viscoelastic Parameters Estimation Results}
+    \caption{Viscoelastic Parameters Estimation Results.}
     % \setlength{\tabcolsep}{3pt} 
     \label{tab:double_subtables_transposed}
     \begin{tabular}{l|cccc} 
@@ -414,12 +433,19 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 \subsection{考察}
 　提案手法の軌道生成は，1サイクルを2秒とし3サイクルで実験を行った．前サイクルで計測されたノイズと推定した粘弾性係数をもとに，次サイクルのグリッパ軌道を生成するため，
 サイクルを重ねるごとに反力の推定精度が向上することが期待される．
-図~\ref{fig:compare_cycle_MAE}に，対象物を豆腐とし，軌道生成のサイクルごとのMAEを示す．提案手法では，3サイクル目で推定反力のMAEが減少することがわかる．
-% 一方で，5次関数形状の軌道では，変形過程の6秒間で推定反力のMAEの減少が見られない．
-一方で，5次関数形状の軌道では，変形過程全体としてMAEが減少傾向を示さない．
-5次関数形状の軌道でMAEが減少しない原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程の6秒間の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためである．
-2つの軌道のサイクルごとでのMAEの傾向は，残りの2つの対象物(鶏肉，バナナ)でも同様であった．
-このことから特異値に注目しサイクルごとに軌道を生成することが，反力推定精度の向上に貢献している．
+% 図~\ref{fig:compare_cycle_MAE}に，対象物を豆腐とし，軌道生成のサイクルごとのMAEを示す．提案手法では，3サイクル目で推定反力のMAEが減少することがわかる．
+% % 一方で，5次関数形状の軌道では，変形過程の6秒間で推定反力のMAEの減少が見られない．
+% 一方で，5次関数形状の軌道では，変形過程全体としてMAEが減少傾向を示さない．
+% 5次関数形状の軌道でMAEが減少しない原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程の6秒間の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためである．
+% 2つの軌道のサイクルごとでのMAEの傾向は，残りの2つの対象物(鶏肉，バナナ)でも同様であった．
+% このことから特異値に注目しサイクルごとに軌道を生成することが，反力推定精度の向上に貢献している．
+{\color{blue}
+図~\ref{fig:compare_cycle_MAE}に，軌道生成のサイクルごとのMAEを示す．
+提案手法では，3サイクル目で推定反力のMAEとその標準偏差が大きく減少する．
+一方で，5次関数形状の軌道では，3サイクル目でのMAEの減少幅が小さく，標準偏差の減少が見られない．
+5次関数形状の軌道でのMAEの減少幅が小さい原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程(6秒間)の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためと考える．
+このことから特異値に注目しサイクルごとに軌道を生成することが，反力推定精度の向上に貢献していると考える．
+}
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.5\textwidth]{chikencompare_cycle_MAE.pdf}
@@ -430,9 +456,14 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 次に，\ref{subsec:QR_traj_and_calculation}節で述べた軌道に適した同定計算の有効性について考察する．
 提案手法による軌道生成では，式~(\ref{eq:BSmodel_matrix})の$\mathbf{q}$に重畳したノイズの影響を抑えることを目的としており，
 軌道に適した同定計算として，$\mathbf{q}$に最もノイズの大きい$\boldsymbol{f}$を用いることを提案した．
-図~\ref{fig:compare_select5mode}に，対象物をバナナとし$\mathbf{q}$の選び方を変えた場合のMAEを示す．
+% 図~\ref{fig:compare_select5mode}に，対象物をバナナとし$\mathbf{q}$の選び方を変えた場合のMAEを示す．
+% $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
+% よって，提案した同定計算は，グリッパの軌道に適しており，反力推定精度を向上させていることがわかる．
+{\color{blue}
+図~\ref{fig:compare_select5mode}に，$\mathbf{q}$の選び方を変えた場合のMAEを示す．
 $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
 よって，提案した同定計算は，グリッパの軌道に適しており，反力推定精度を向上させていることがわかる．
+}
 \begin{figure}[t]
     \centering
     % \includegraphics[width=0.5\textwidth]{select_differet_q_banana.pdf}
@@ -496,15 +527,18 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
     Sensorization of a surgical robotic instrument for force sensing，
     Optical Fibers and Sensors for Medical Diagnostics and Treatment Applications XVI，Vol. 9702，pp.153–162，2016.
     
+
+    
+    \bibitem{RMIS}%ロボット支援手術での力センサの必要性
+    Amirabdollahian F, Livatino S, Vahedi B, Gudipati R, Sheen P, Gawrie-Mohan S, Vasdev N：
+    Prevalence of haptic feedback in robot-mediated surgery: a systematic review of literature，
+    Journal of robotic surgery，Vol. 12，No. 1，pp.11–25, 2018.
+
     \bibitem{MIS_ref7}%殺菌
     Trejos AL, Escoto A, Naish MD, Patel RV：
     Design and evaluation of a sterilizable force sensing instrument for minimally invasive surgery，
     IEEE Sensors Journal，Vol. 17，No. 13，pp.3983–3993, 2017.
 
-    \bibitem{RMIS}%ロボット支援手術での力センサの必要性
-    Amirabdollahian F, Livatino S, Vahedi B, Gudipati R, Sheen P, Gawrie-Mohan S, Vasdev N：
-    Prevalence of haptic feedback in robot-mediated surgery: a systematic review of literature，
-    Journal of robotic surgery，Vol. 12，No. 1，pp.11–25, 2018.
 
 
 
@@ -557,21 +591,27 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
     Kim YH：Ultrasound phantoms to protect patients from novices，
     The Korean journal of pain，Vol. 29，No. 2，pp. 73–77, 2016.
 
-    \bibitem{exp_ref2}
-    Wong K, Bhama PK, Mazimpaka Jd, Dusabimana R, Lee LN, Shaye DA：
-    Banana fruit: an “appealing” alternative for practicing suture techniques in resource-limited settings, 
-    Am J Otolaryngol，Vol. 38，No. 5，pp. 582–584, 2018.
+    % \bibitem{exp_ref2}
+    % Wong K, Bhama PK, Mazimpaka Jd, Dusabimana R, Lee LN, Shaye DA：
+    % Banana fruit: an “appealing” alternative for practicing suture techniques in resource-limited settings, 
+    % Am J Otolaryngol，Vol. 38，No. 5，pp. 582–584, 2018.
 
     \bibitem{exp_ref3}
     Giannotti E, Jethwa K, Closs S, Sun R, Bhatti H, James J, Clarke C：
     Promoting simulation-based training in radiology: a homemade phantom for the practice of ultrasound-guided procedures，
     Br J Radiol，Vol. 95，No. 1137，pp. 20220354, 2022.
 
+    \bibitem{reult_higasimori}
+    M. Higashimori, K. Yoshimoto, M. Kaneko：
+    Active shaping of an unknown rheological object based on deformation decomposition into elasticity and plasticity，
+    IEEE International Conference on Robotics and Automation，pp.5120–5126，2010.
+
     %%%%future work
     \bibitem{future_work1}
     川嶋健嗣： 
     低侵襲な外科手術を支援するロボットにおける力触覚センシング，
     日本ロボット学会誌，Vol. 37，No. 5，pp.405–408, 2019.
+
 
 
 
