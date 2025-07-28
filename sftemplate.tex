@@ -99,7 +99,7 @@ $^1$ The University of Tokyo}
 これらの要因による力センサの不在を解決するために，力センサを用いないで反力を推定する技術には需要がある．
 
  推定反力は触覚フィードバックに使用され，ロボットを用いた自動化では，最低0.5 kHz\cite{fps_ref1}，理想的には，1 kHzの更新頻度が必要とされる\cite{fps_ref2}．
-この更新頻度を満たすために，反力推定での計算効率が重要である．そこで本研究では，臓器等の柔軟物を計算コストの小さいバネとダンパでモデル化し，バネ定数と粘性減衰係数を同定し，反力推定を行う．
+この更新頻度を満たすために，反力推定での計算効率が重要である．そこで本研究では，臓器等の柔軟物を計算コストの小さいバネとダンパでモデル化し，バネ定数と粘性減衰係数の同定を行い，反力を推定する．
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{関連研究}
@@ -123,7 +123,7 @@ Xueらは，ワイヤ駆動する鉗子グリッパをケーブルプーリー�
 最後に，PBDでモデル化する手法は，柔軟物の変形に対するモデルの精度はバネダンパより高く，計算量は有限要素法よりも少ない\cite{ref_PBD}．しかし，柔軟物のせん断変形を計測する必要があり，マーカが必要となるが，臓器が出血することを考慮すると画像計測は難しいと考える．
 
 % 本研究では，マーカレスと高い計算効率を重視し，柔軟物をバネとダンパでモデルを用い，力センサなしで柔軟物からの反力を推定する．
-力センサを搭載していないグリッパは，エンコーダをもとに制御される．そのためグリッパが目標位置に到達し停止すると，制御入力である力入力は0 [N]になる．
+力センサを搭載していないグリッパは，エンコーダをもとに制御される．そのためグリッパが目標位置に到達し停止すると，制御入力である力入力は0 Nになる．
 しかし，柔軟物の変形に伴い反力は変化し，力入力だけでは反力推定することが困難である．
 加えて，計算コストの低減や，マーカを用いず画像やエンコーダのみで計測を完結したいという需要がある．
 そこで，本研究では柔軟物をバネとダンパでモデル化し，同定精度を向上させるために，グリッパが停止するまでの軌道を分割して生成する手法を提案する．
@@ -266,7 +266,7 @@ $\mathbf{q}$に最もノイズの大きい$\boldsymbol{f}$を用いることで
             \mathbf{M}_{n-1} ,\mathbf{m}_n
         \end{bmatrix}^{\mathrm{T}},\\
         \mathbf{m}_{n}&=\begin{bmatrix}
-            x_{n} & \int{x_{n}} & -\int{f_{n}}\ & -\iint{f_{n}}\\
+            x_{n}, & \int{x_{n}}, & -\int{f_{n}},& -\iint{f_{n}}\\
         \end{bmatrix}
     \end{aligned}
 \end{equation}
@@ -349,9 +349,11 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 図~\ref{fig:prop_quint}に反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
 {\color{blue}表~\ref{tab:double_subtables_transposed}に5回の実験での粘弾性係数の同定結果を示す．
 提案手法と比較し5次関数形状の軌道では，$c_1$の標準偏差が大きい．
+$c_1$は塑性の特性を表す係数であり，
 グリッパを対象物から離した後，対象物に残留する塑性変形量を計測することで$c_1$の同定精度は向上する\cite{reult_higasimori}.
-本研究では変形過程のみで粘弾性係数を同定するため，4つの係数の中で$c_1$の同定が難しい．
-5次関数形状の軌道と比較し，提案手法でのMAEと$c_1$の標準偏差が小さいことから，提案手法では真値に近い値を安定して算出できたと考える．
+本研究では変形過程のみで同定するため，4つの係数の中で$c_1$の同定が難しい．
+5次関数形状の軌道と比較し，提案手法でのMAEと$c_1$の標準偏差が小さい．
+このことから提案手法では真値に近い粘弾性係数を安定して算出できたと考える．
 }
 \begin{figure}[tb]
     \centering
@@ -449,7 +451,7 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.5\textwidth]{chikencompare_cycle_MAE.pdf}
-    \caption{compare MAE among cycles.}
+    \caption{Compare MAE among cycles.}
     \label{fig:compare_cycle_MAE}
 \end{figure}
 
@@ -612,13 +614,41 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
     低侵襲な外科手術を支援するロボットにおける力触覚センシング，
     日本ロボット学会誌，Vol. 37，No. 5，pp.405–408, 2019.
 
-
-
-
-
-    
-
 \end{thebibliography}
+
+
+\clearpage
+% ここに新しい内容を記述
+\section*{すべての対象物で図を示すことも可能です．}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{tofu_compare_cycle_MAE.pdf}
+    \caption{Compare MAE among cycles (tofu).}
+    \label{fig:tofu_compare_cycle_MAE}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{banana_compare_cycle_MAE.pdf}
+    \caption{Compare MAE among cycles (banana).}
+    \label{fig:banana_compare_cycle_MAE}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.5\textwidth]{select_differet_q_banana.pdf}
+    \includegraphics[width=0.5\textwidth]{select_differet_q_tofu.pdf}
+    \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
+    \caption{Compare 5 moethod of identification calculation (tofu).}
+    \label{fig:compare_select5mode(tofu)}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.5\textwidth]{select_differet_q_banana.pdf}
+    \includegraphics[width=0.5\textwidth]{select_differet_q_banana.pdf}
+    \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
+    \caption{Compare 5 moethod of identification calculation (banana).}
+    \label{fig:compare_select5mode(banana)}
+\end{figure}
+
 
 \end{document}
 
