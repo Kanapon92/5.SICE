@@ -20,7 +20,7 @@
 %セクションの行間を狭くしたい
 \usepackage{titlesec}
 \titleformat{\section}[block]{\centering\normalfont\Large\bfseries}{\thesection}{1em}{} % セクションを中央揃え
-\titlespacing*{\section}{0pt}{10pt}{5pt} % \sectionの余白設定
+\titlespacing*{\section}{0pt}{12pt}{7pt} % \sectionの余白設定
 \titlespacing*{\subsection}{0pt}{10pt}{5pt} % \subsectionの余白設定
 \titlespacing*{\subsubsection}{0pt}{10pt}{5pt}
 
@@ -37,10 +37,8 @@ $^1$ The University of Tokyo}
 % 本研究では、柔軟物の粘弾性パラメータを推定し，力センサを用いずに接触力を推定する手法を提案する．
 本研究では，力センサを用いずにグリッパと柔軟物間の反力を推定するために，バネとダンパでモデル化した柔軟物のパラメータ同定法を提案する．
 提案手法では、アクティブセンシングに基づきグリッパの軌道を生成し，ノイズにロバストな同定計算を行う．
-{\color{blue}
 % 実験では，鶏むね肉や豆腐，バナナを対象に，提案手法の反力推定精度を評価した．
 実験では鶏むね肉を対象に提案手法の反力推定精度を評価した．
-}
 その結果，単純な5次関数のグリッパ軌道と比較して推定精度が向上することを確認した．
 % 本手法は，柔軟物の把持や操作をセンサレスで実現する基盤技術として有用である．
 }
@@ -136,7 +134,7 @@ Xueらは，ワイヤ駆動する鉗子グリッパをケーブルプーリー�
 目標は停止段階での推定反力を力センサの計測値に近づけることである．
 
 弾性と塑性の両方の性質を表現する柔軟物モデルとして，図~\ref{fig:BS_model}に示すバーガースモデルを用いる\cite{ref_MSD}．
-図~\ref{fig:BS_model}の{\color{blue}モデルへの力入力}$f(t)$と，変形量$x(t)$の関係は以下のように表される．
+図~\ref{fig:BS_model}のモデルへの力入力$f(t)$と，変形量$x(t)$の関係は以下のように表される．
 \begin{equation}
     % \frac{k_1 k_2}{c_2}\int{x}\,dt + k_1 x = \frac{k_1k_2}{c_1 c_2}\iint{f}\,dt\,dt + \frac{k_1}{c_2}(1+\frac{k_2}{k_1}+\frac{c_2}{c_1})\int{f}\,dt + f
     p_1 {x} + p_2 \int{x}\,dt = p_3\int{f}\,dt +p_4\iint{f}\,dt\,dt  + f
@@ -338,35 +336,32 @@ $\mathbf{p}_{n}$の更新に利用するか，除外するか判断する．
 もう1つは，提案手法と同じ最終値を持つ5次関数形状の軌道である(Quint.：quintic polynomial)．
 % 1つは，提案手法により生成したグリッパ軌道であり，もう1つは，それと同じ最終値を持つ5次関数形状の軌道である．
 5次関数の境界条件は，図~{\ref{fig:QR_traj}}の直交行列の生成時に用いた境界条件と同じである．
-{\color{blue}
 それぞれの軌道に対して実験を5回行った．
-}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{結果}
 % 　図~\ref{fig:bar_result}に3つの対象物に対する推定反力のMAEを示す．すべての対象物において，提案手法により生成したグリッパ軌道の方が5次関数形状の軌道よりもMAEが小さく，反力推定精度が高いことがわかる．
 　図~\ref{fig:bar_result}に反力推定のMAEを示す．提案手法により生成したグリッパ軌道の方が5次関数形状の軌道よりもMAEが小さく，反力推定精度が高いことがわかる．
 % 図~\ref{fig:prop_quint}に鶏むね肉を対象とし，反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．バナナと豆腐も同様な類似であった．
 図~\ref{fig:prop_quint}に反力推定と力センサの計測結果を示す．提案手法は5次関数形状と比較して，反力の最大値と反力の減少傾向が力センサの計測結果と類似していることがわかる．
-{\color{blue}表~\ref{tab:double_subtables_transposed}に5回の実験での粘弾性係数の同定結果を示す．
+表~\ref{tab:double_subtables_transposed}に5回の実験での粘弾性係数の同定結果を示す．
 提案手法と比較し5次関数形状の軌道では，$c_1$の標準偏差が大きい．
 $c_1$は塑性の特性を表す係数であり，
 グリッパを対象物から離した後，対象物に残留する塑性変形量を計測することで$c_1$の同定精度は向上する\cite{reult_higasimori}.
 本研究では変形過程のみで同定するため，4つの係数の中で$c_1$の同定が難しい．
 5次関数形状の軌道と比較し，提案手法でのMAEと$c_1$の標準偏差が小さい．
 このことから提案手法では真値に近い粘弾性係数を安定して算出できたと考える．
-}
 \begin{figure}[tb]
     \centering
     % \includegraphics[width=0.5\textwidth]{bar_result.pdf}
     \includegraphics[width=0.5\textwidth]{bar_result_chiken.pdf}
-    \caption{Bar result of MAE.}  
+    \caption{Experimental result.}  
     \label{fig:bar_result}
 \end{figure}
 \begin{figure}[tb]
     \centering
     \includegraphics[width=0.5\textwidth]{prop_quint.pdf}
     \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
-    \caption{Compare prediction force with force sensor; (A) proposed method, (B) quintic polynomial.}
+    \caption{Comparison of predicted force and measured force；(A) Proposed method, (B) Quintic polynomial.}
     \label{fig:prop_quint}
 \end{figure}
 
@@ -397,12 +392,12 @@ $c_1$は塑性の特性を表す係数であり，
 % \end{table}
 \begin{table}[tb]
     \centering
-    \caption{Viscoelastic Parameters Estimation Results.}
+    \caption{Viscoelastic parameters estimation results.}
     % \setlength{\tabcolsep}{3pt} 
     \label{tab:double_subtables_transposed}
     \begin{tabular}{l|cccc} 
         %   \hline
-                \multicolumn{5}{c}{(A) proposed method}\\
+                \multicolumn{5}{c}{(A) Proposed method.}\\
         %   \hline
           & $k_1$ & $k_2$ & $c_1$ & $c_2$ \\
           \hline
@@ -416,7 +411,7 @@ $c_1$は塑性の特性を表す係数であり，
           std.  & 1.2  & 0.3  & 4.6  & 0.2 \\
         %   \hline
         \noalign{\vskip 7pt} % 行間に5ptの隙間を挿入
-                \multicolumn{5}{c}{(B) quintic polynomial}\\
+                \multicolumn{5}{c}{(B) Quintic polynomial.}\\
         %   \hline
           & $k_1$ & $k_2$ & $c_1$ & $c_2$\\
           \hline
@@ -441,17 +436,15 @@ $c_1$は塑性の特性を表す係数であり，
 % 5次関数形状の軌道でMAEが減少しない原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程の6秒間の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためである．
 % 2つの軌道のサイクルごとでのMAEの傾向は，残りの2つの対象物(鶏肉，バナナ)でも同様であった．
 % このことから特異値に注目しサイクルごとに軌道を生成することが，反力推定精度の向上に貢献している．
-{\color{blue}
 図~\ref{fig:compare_cycle_MAE}に，軌道生成のサイクルごとのMAEを示す．
 提案手法では，3サイクル目で推定反力のMAEとその標準偏差が大きく減少する．
 一方で，5次関数形状の軌道では，3サイクル目でのMAEの減少幅が小さく，標準偏差の減少が見られない．
 5次関数形状の軌道でのMAEの減少幅が小さい原因は，\ref{subsec:downsample}節のデータの抽出により，変形過程(6秒間)の大半のデータが粘弾性係数が物理的に妥当でないとして，除外されるためと考える．
 このことから特異値に注目しサイクルごとに軌道を生成することが，反力推定精度の向上に貢献していると考える．
-}
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.5\textwidth]{chikencompare_cycle_MAE.pdf}
-    \caption{Compare MAE among cycles.}
+    \caption{Comparison of MAE across cycles.}
     \label{fig:compare_cycle_MAE}
 \end{figure}
 
@@ -461,17 +454,15 @@ $c_1$は塑性の特性を表す係数であり，
 % 図~\ref{fig:compare_select5mode}に，対象物をバナナとし$\mathbf{q}$の選び方を変えた場合のMAEを示す．
 % $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
 % よって，提案した同定計算は，グリッパの軌道に適しており，反力推定精度を向上させていることがわかる．
-{\color{blue}
 図~\ref{fig:compare_select5mode}に，$\mathbf{q}$の選び方を変えた場合のMAEを示す．
 $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\boldsymbol{{f}}$に関しては，積分を重ねるごとにMAEが増加することがわかる．
 よって，提案した同定計算は，グリッパの軌道に適しており，反力推定精度を向上させていることがわかる．
-}
 \begin{figure}[t]
     \centering
     % \includegraphics[width=0.5\textwidth]{select_differet_q_banana.pdf}
     \includegraphics[width=0.5\textwidth]{select_differet_q_chicken.pdf}
     \captionsetup{width=0.9\linewidth} % キャプションの幅をページ幅の90%に設定
-    \caption{Compare 5 moethod of identification calculation.}
+    \caption{Comparison of five identification calculation.}
     \label{fig:compare_select5mode}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -616,7 +607,7 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
 
 \end{thebibliography}
 
-
+\iffalse
 \clearpage
 % ここに新しい内容を記述
 \section*{すべての対象物で図を示すことも可能です．}
@@ -648,7 +639,7 @@ $\mathbf{q}$に$\boldsymbol{f}$を用いた場合のMAEが最も小さく，$\bo
     \caption{Compare 5 moethod of identification calculation (banana).}
     \label{fig:compare_select5mode(banana)}
 \end{figure}
-
+\fi
 
 \end{document}
 

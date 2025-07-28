@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  28 JUL 2025 16:42
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  28 JUL 2025 20:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -176,35 +176,35 @@ File: l3backend-dvips.def 2022-01-12 L3 backend support: dvips
 ) (./sftemplate.aux)
 \openout1 = `sftemplate.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 49.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <10> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 49.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 47.
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 87.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 85.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 87.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 85.
  [1
 
 
@@ -212,9 +212,9 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
 File: 0.Fig//BS_model.pdf Graphic file (type pdf)
 <0.Fig//BS_model.pdf>
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 193.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 191.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 193.
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 191.
  [2]
 File: 0.Fig//QR_traj_eng.pdf Graphic file (type pdf)
 <0.Fig//QR_traj_eng.pdf>
@@ -224,21 +224,21 @@ File: 0.Fig//exp_setup_chicken.pdf Graphic file (type pdf)
 File: 0.Fig//bar_result_chiken.pdf Graphic file (type pdf)
 <0.Fig//bar_result_chiken.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 361--362
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 356--357
  [][] 
  []
 
 File: 0.Fig//prop_quint.pdf Graphic file (type pdf)
 <0.Fig//prop_quint.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 367--369
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 362--364
  [][] 
  []
 
 File: 0.Fig//chikencompare_cycle_MAE.pdf Graphic file (type pdf)
 <0.Fig//chikencompare_cycle_MAE.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 453--454
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 446--447
  [][] 
  []
 
@@ -246,64 +246,33 @@ Overfull \hbox (14.22638pt too wide) in paragraph at lines 453--454
 File: 0.Fig//select_differet_q_chicken.pdf Graphic file (type pdf)
 <0.Fig//select_differet_q_chicken.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 472--474
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 463--465
  [][] 
  []
 
 [5]
-Underfull \hbox (badness 7981) in paragraph at lines 507--509
+Underfull \hbox (badness 7981) in paragraph at lines 498--500
 \OT1/cmr/m/n/10 min-i-mally in-va-sive surgery\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Curr Opin Urol\JY1/mc/m/n/10 ，
  []
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 515--518
+Underfull \hbox (badness 1953) in paragraph at lines 506--509
 \OT1/cmr/m/n/10 as-pects of ar-ti-fi-cial tac-tile feed-back in la-paro-
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 565--568
+Underfull \hbox (badness 1168) in paragraph at lines 556--559
 \OT1/cmr/m/n/10 based sens-ing of forces in elas-tic ob-jects\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Sen-
  []
 
-[6]
-File: 0.Fig//tofu_compare_cycle_MAE.pdf Graphic file (type pdf)
-<0.Fig//tofu_compare_cycle_MAE.pdf>
-
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 625--626
- [][] 
- []
-
-File: 0.Fig//banana_compare_cycle_MAE.pdf Graphic file (type pdf)
-<0.Fig//banana_compare_cycle_MAE.pdf>
-
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 631--632
- [][] 
- []
-
-File: 0.Fig//select_differet_q_tofu.pdf Graphic file (type pdf)
-<0.Fig//select_differet_q_tofu.pdf>
-
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 638--640
- [][] 
- []
-
-File: 0.Fig//select_differet_q_banana.pdf Graphic file (type pdf)
-<0.Fig//select_differet_q_banana.pdf>
-
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 646--648
- [][] 
- []
-
-[7
-
-] (./sftemplate.aux) ) 
+[6] (./sftemplate.aux) ) 
 Here is how much of TeX's memory you used:
- 4047 strings out of 478741
- 67251 string characters out of 5860982
- 394897 words of memory out of 5000000
- 22444 multiletter control sequences out of 15000+600000
+ 4018 strings out of 478741
+ 66211 string characters out of 5860982
+ 394886 words of memory out of 5000000
+ 22419 multiletter control sequences out of 15000+600000
  482137 words of font info for 77 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  55i,18n,63p,315b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (7 pages, 48756 bytes).
+Output written on sftemplate.dvi (6 pages, 47136 bytes).
