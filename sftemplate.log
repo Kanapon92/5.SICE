@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  28 JUL 2025 20:27
+This is e-pTeX, Version 3.141592653-p3.9.1-210218-2.6 (utf8.euc) (TeX Live 2022/dev/Debian) (preloaded format=platex 2025.7.14)  29 JUL 2025 10:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -246,22 +246,22 @@ Overfull \hbox (14.22638pt too wide) in paragraph at lines 446--447
 File: 0.Fig//select_differet_q_chicken.pdf Graphic file (type pdf)
 <0.Fig//select_differet_q_chicken.pdf>
 
-Overfull \hbox (14.22638pt too wide) in paragraph at lines 463--465
+Overfull \hbox (14.22638pt too wide) in paragraph at lines 465--467
  [][] 
  []
 
 [5]
-Underfull \hbox (badness 7981) in paragraph at lines 498--500
+Underfull \hbox (badness 7981) in paragraph at lines 500--502
 \OT1/cmr/m/n/10 min-i-mally in-va-sive surgery\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Curr Opin Urol\JY1/mc/m/n/10 ，
  []
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 506--509
+Underfull \hbox (badness 1953) in paragraph at lines 508--511
 \OT1/cmr/m/n/10 as-pects of ar-ti-fi-cial tac-tile feed-back in la-paro-
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 556--559
+Underfull \hbox (badness 1168) in paragraph at lines 558--561
 \OT1/cmr/m/n/10 based sens-ing of forces in elas-tic ob-jects\JY1/mc/m/n/10 ， \OT1/cmr/m/n/10 Sen-
  []
 
@@ -275,4 +275,4 @@ Here is how much of TeX's memory you used:
  929 hyphenation exceptions out of 8191
  55i,18n,63p,315b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on sftemplate.dvi (6 pages, 47136 bytes).
+Output written on sftemplate.dvi (6 pages, 47156 bytes).
